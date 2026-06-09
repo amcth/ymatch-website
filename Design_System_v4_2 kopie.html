@@ -1,0 +1,1692 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ymatch — Design System v4.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --orange:      #E94E1B;
+  --orange-deep: #C73D13;
+  --orange-soft: #F9DDD1;
+  --orange-tint: #FDF0EA;
+  --ink:         #15171C;
+  --ink-2:       #0D0F12;
+  --bg:          #EFEAE0;
+  --bg-2:        #E6E0D4;
+  --bg-3:        #DDD6C8;
+  --card:        #F8F5EF;
+  --green:       #2D7A4F;
+  --green-deep:  #1E5737;
+  --green-soft:  #D4EBDC;
+  --green-tint:  #EDF7F1;
+  --blue:        #2E4A6B;
+  --blue-soft:   #C9D6E3;
+  --blue-tint:   #EBF0F6;
+  --wa:          #25D366;
+  --muted:       #5C5A54;
+  --subtle:      #8C8A84;
+  --line:        rgba(21,23,28,.10);
+  --line-strong: rgba(21,23,28,.20);
+  --grid-dot:    rgba(21,23,28,.06);
+  --display: "Bricolage Grotesque", -apple-system, "Segoe UI", sans-serif;
+  --mono:    "Space Mono", ui-monospace, Menlo, monospace;
+  --hand:    "Caveat", "Segoe Script", cursive;
+  --r:    14px;
+  --r-sm:  8px;
+  --r-xs:  4px;
+  --r-pill:999px;
+  --shadow-sm: 0 1px 2px rgba(21,23,28,.06);
+  --shadow:    0 1px 3px rgba(21,23,28,.05), 0 8px 24px rgba(21,23,28,.07);
+  --shadow-lg: 0 4px 8px rgba(21,23,28,.06), 0 20px 48px rgba(21,23,28,.10);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--display);
+  background-color:var(--bg);
+  background-image:radial-gradient(circle,var(--grid-dot) 1.2px,transparent 1.4px);
+  background-size:24px 24px;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-size:16px;line-height:1.5;
+}
+::selection{background:var(--orange);color:#fff}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--display);cursor:pointer;border:0}
+img,svg{display:block;max-width:100%}
+
+/* Shell */
+.shell{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.side{
+  position:sticky;top:0;height:100vh;align-self:start;
+  border-right:1px solid var(--line-strong);
+  background:var(--bg);padding:32px 24px;
+  display:flex;flex-direction:column;gap:24px;overflow-y:auto;
+}
+.side-logo{width:120px}
+.side-meta{
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  line-height:1.7;padding:12px 14px;
+  background:var(--bg-2);border-radius:var(--r-sm);
+}
+.side-meta b{color:var(--orange);font-weight:700}
+.side nav{display:flex;flex-direction:column;gap:1px}
+.side nav a{
+  font-size:13px;font-weight:500;color:var(--muted);
+  padding:8px 12px;border-radius:var(--r-sm);
+  display:flex;align-items:center;gap:10px;
+  transition:background .14s,color .14s,border-color .14s;
+  border-left:2px solid transparent;
+}
+.side nav a:hover{background:var(--bg-2);color:var(--ink);border-left-color:var(--orange)}
+.side nav a .n{font-family:var(--mono);font-size:10px;color:var(--subtle);width:18px}
+.side-foot{
+  margin-top:auto;font-family:var(--hand);font-size:19px;
+  color:var(--blue);line-height:1.3;transform:rotate(-1.5deg);
+}
+
+/* Main */
+.main{padding:0 0 140px;min-width:0}
+.wrap{max-width:1080px;padding:0 52px;margin:0 auto}
+section.block{padding:88px 0 0;scroll-margin-top:24px}
+
+.sec-head{margin-bottom:48px;max-width:720px}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--orange);
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.eyebrow::before{content:"";width:20px;height:1.5px;background:var(--orange)}
+.sec-head h2{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(34px,4.5vw,56px);letter-spacing:-.035em;
+  line-height:.95;margin:0 0 16px;
+}
+.sec-head h2 em{font-style:italic;font-weight:300}
+.sec-head p{font-size:17px;color:var(--muted);margin:0;max-width:580px;line-height:1.55}
+
+.sub{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--subtle);
+  margin:52px 0 20px;display:flex;align-items:center;gap:12px;
+}
+.sub::before{content:"";width:16px;height:1px;background:var(--subtle)}
+.sub:first-of-type{margin-top:0}
+
+.dim{
+  position:relative;height:1px;background:var(--blue-soft);margin:24px 0;
+}
+.dim::before,.dim::after{
+  content:"";position:absolute;top:-5px;
+  width:1px;height:11px;background:var(--blue);
+}
+.dim::before{left:0}.dim::after{right:0}
+.dim span{
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:var(--bg);padding:0 10px;
+  font-family:var(--mono);font-size:10px;color:var(--blue);
+}
+
+.note{
+  border-left:3px solid var(--green);padding:4px 0 4px 16px;
+  font-size:14px;color:var(--muted);line-height:1.55;max-width:600px;
+}
+.note b{color:var(--ink);font-weight:600}
+
+/* Cover */
+.cover{padding:80px 0 32px;border-bottom:1px solid var(--line-strong);position:relative}
+.cover-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:52px}
+.cover h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(60px,11vw,144px);line-height:.87;letter-spacing:-.055em;margin:0;
+}
+.cover h1 .o{color:var(--orange)}
+.cover h1 em{font-style:italic;font-weight:300}
+.cover-meta{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.8}
+.cover-meta b{color:var(--ink)}
+.cover-lede{font-size:20px;color:var(--muted);max-width:560px;line-height:1.5;margin:40px 0 0}
+.cover-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px}
+.cover-badge{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:7px 16px;border-radius:var(--r-pill);border:1px solid var(--line-strong);color:var(--muted);
+  background:var(--card);
+}
+.cover-dim{position:absolute;bottom:32px;right:52px;display:flex;align-items:center;gap:8px}
+.cover-dim span{font-family:var(--mono);font-size:10px;color:var(--blue)}
+.cover-dim-line{width:80px;height:1px;background:var(--blue-soft);position:relative}
+.cover-dim-line::before,.cover-dim-line::after{
+  content:"";position:absolute;top:-4px;width:1px;height:9px;background:var(--blue);
+}
+.cover-dim-line::before{left:0}.cover-dim-line::after{right:0}
+
+/* Principes */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.principle{
+  background:var(--card);border-radius:var(--r);padding:28px;
+  border:1px solid var(--line);position:relative;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.principle::after{
+  content:"";position:absolute;bottom:-20px;right:-20px;
+  width:80px;height:80px;border-radius:50%;
+  border:1.5px solid var(--orange);opacity:.12;
+}
+.principle .pn{font-family:var(--mono);font-size:11px;color:var(--orange);font-weight:700;letter-spacing:.05em;margin-bottom:12px}
+.principle h4{font-weight:700;font-size:20px;margin:0 0 10px;letter-spacing:-.02em}
+.principle p{font-size:14px;color:var(--muted);margin:0;line-height:1.6}
+
+/* Swatches */
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.swatch{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.chip{height:100px}
+.swatch .meta{padding:14px 16px;background:var(--card)}
+.swatch .meta .nm{font-weight:700;font-size:14px}
+.swatch .meta .hex{font-family:var(--mono);font-size:11px;color:var(--subtle);margin-top:3px;text-transform:uppercase}
+.swatch .meta .use{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+.swatch .meta .var{font-family:var(--mono);font-size:10.5px;color:var(--orange);margin-top:6px}
+
+/* Typografie specimens */
+.specimen-display{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(52px,9vw,112px);letter-spacing:-.05em;line-height:.88;
+}
+.specimen-display em{font-style:italic;font-weight:300}
+.specimen-display .o{color:var(--orange)}
+.specimen-body{font-size:22px;font-weight:400;line-height:1.5;color:var(--muted);max-width:680px;margin-top:28px}
+.specimen-hand{font-family:var(--hand);font-size:36px;color:var(--blue);margin-top:20px}
+.specimen-mono{font-family:var(--mono);font-size:16px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:16px}
+.type-scale{display:flex;flex-direction:column;gap:0;margin-top:32px}
+.scale-row{
+  display:grid;grid-template-columns:180px 1fr 200px;
+  align-items:baseline;padding:18px 0;
+  border-bottom:1px solid var(--line);gap:24px;
+}
+.scale-row:last-child{border-bottom:0}
+.scale-row .tag{font-family:var(--mono);font-size:11px;color:var(--subtle);line-height:1.6}
+.scale-row .tag b{color:var(--ink);display:block;font-size:12px;letter-spacing:0;text-transform:none}
+.scale-row .use{font-size:12px;color:var(--subtle);line-height:1.5}
+
+/* Spacing */
+.space-grid{display:flex;flex-wrap:wrap;gap:24px 40px;align-items:flex-end;margin-top:8px}
+.space-row{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.space-row .bar{background:var(--ink);border-radius:2px;width:100%;min-width:4px}
+.space-row .lab{font-family:var(--mono);font-size:11px;color:var(--subtle)}
+.space-row .lab b{color:var(--ink);display:block;font-weight:700}
+
+/* Radius */
+.radius-grid{display:flex;gap:24px;flex-wrap:wrap}
+.radius-item{display:flex;flex-direction:column;gap:12px}
+.radius-demo{width:88px;height:88px;background:var(--bg-2);border:1.5px solid var(--line-strong)}
+.radius-item .t-val{font-family:var(--mono);font-size:11px;color:var(--subtle)}
+.radius-item .t-name{font-size:13px;font-weight:600;color:var(--ink)}
+
+/* Buttons */
+.btn-demo{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--display);font-weight:700;font-size:16px;
+  padding:14px 28px;border-radius:var(--r-sm);transition:all .15s;
+  border:0;cursor:pointer;white-space:nowrap;
+}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--ink-2);transform:translateY(-1px);box-shadow:var(--shadow)}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-orange:hover{background:var(--orange-deep);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--line-strong)}
+.btn-outline:hover{border-color:var(--ink);background:var(--bg-2)}
+.btn-ghost{background:transparent;color:var(--orange);border:1.5px solid var(--orange)}
+.btn-ghost:hover{background:var(--orange-tint)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:#1da851}
+.btn-sm{padding:9px 18px;font-size:14px;border-radius:var(--r-xs)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip-filter{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;padding:6px 14px;border-radius:var(--r-pill);
+  border:1px solid var(--line-strong);color:var(--muted);
+  background:var(--card);cursor:pointer;transition:all .14s;
+}
+.chip-filter:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-tint)}
+.chip-filter.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* Vacaturekaart */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vac-card{
+  background:var(--card);border-radius:var(--r);border:1px solid var(--line);
+  padding:24px;box-shadow:var(--shadow-sm);
+  transition:box-shadow .2s,transform .2s,border-color .2s;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.vac-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--line);transition:background .2s;
+}
+.vac-card:hover::before{background:var(--orange)}
+.vac-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:rgba(233,78,27,.25)}
+.vac-card.featured::before{background:var(--orange)}
+.card-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.badge{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:4px 10px;border-radius:var(--r-xs);
+}
+.badge-sector{background:var(--orange-tint);color:var(--orange-deep)}
+.badge-zzp{background:var(--ink);color:#fff}
+.badge-new{background:var(--green-tint);color:var(--green-deep);border:1px solid var(--green-soft)}
+.badge-blue{background:var(--blue-tint);color:var(--blue)}
+.vac-card h3{font-weight:800;font-size:22px;letter-spacing:-.025em;margin:0 0 6px;line-height:1.1}
+.vac-card .vac-sub{font-size:14px;color:var(--muted);margin-bottom:20px}
+.vac-salary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green-tint);border:1px solid var(--green-soft);
+  border-radius:var(--r-sm);padding:8px 14px;margin-bottom:20px;
+}
+.vac-salary .slabel{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--green)}
+.vac-salary .amount{font-weight:700;font-size:15px;color:var(--green-deep)}
+.vac-divider{height:1px;background:var(--line);margin:16px 0}
+.vac-recruiter{display:flex;align-items:center;gap:12px}
+.rec-av-sm{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--hand);font-size:17px;font-weight:700;color:#fff;
+}
+.recruiter-info{flex:1;min-width:0}
+.recruiter-info .name{font-weight:700;font-size:14px}
+.recruiter-info .role{font-size:12px;color:var(--subtle)}
+.vac-cta{font-weight:700;font-size:13px;color:var(--orange);white-space:nowrap}
+
+/* Sectorblokken */
+.sector-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sector-card{
+  border-radius:var(--r);padding:32px 28px;
+  position:relative;overflow:hidden;min-height:200px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;
+}
+.sector-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.geo{
+  position:absolute;bottom:-32px;right:-32px;
+  width:140px;height:140px;border-radius:50%;
+  pointer-events:none;
+}
+.geo2{
+  position:absolute;bottom:-8px;right:-8px;
+  width:80px;height:80px;border-radius:50%;
+  border-width:1.5px;border-style:solid;
+  pointer-events:none;
+}
+.sector-card h3{font-weight:800;font-size:30px;letter-spacing:-.03em;margin:0 0 8px;line-height:1;position:relative}
+.sector-card .sec-sub{font-size:14px;line-height:1.6;opacity:.7;position:relative}
+.sector-card .sec-cta{font-weight:700;font-size:14px;position:relative;margin-top:24px}
+.sc-bouw{background:var(--ink);color:#fff}
+.sc-bouw .sec-cta{color:var(--orange)}
+.sc-tech{background:var(--orange);color:#fff}
+.sc-tech .sec-cta{color:rgba(255,255,255,.85)}
+.sc-office{background:var(--blue);color:#fff}
+.sc-office .sec-cta{color:rgba(255,255,255,.75)}
+
+/* Formulieren */
+.form-demo{display:flex;flex-direction:column;gap:20px;max-width:520px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:600;font-size:14px}
+.field .hint{font-family:var(--mono);font-size:11px;color:var(--subtle)}
+.field input,.field select,.field textarea{
+  font-family:var(--display);font-size:15px;font-weight:500;
+  background:var(--card);border:1.5px solid var(--line-strong);
+  border-radius:var(--r-sm);padding:13px 16px;color:var(--ink);
+  outline:none;transition:border-color .14s,box-shadow .14s;width:100%;
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--subtle);font-weight:400}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--orange);box-shadow:0 0 0 3px var(--orange-soft);
+}
+.field.error input{border-color:#D9534F;box-shadow:0 0 0 3px rgba(217,83,79,.15)}
+.field .error-msg{font-size:12px;color:#C0392B;font-weight:600}
+.field textarea{resize:vertical;min-height:100px}
+
+/* Tone of Voice */
+.tov-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tov-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.tov-head{padding:16px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+.tov-head .attr{font-weight:800;font-size:17px;letter-spacing:-.02em;margin:0 0 4px}
+.tov-head .rule{font-size:13px;color:var(--muted)}
+.tov-body{display:grid;grid-template-columns:1fr 1fr}
+.tov-yes{padding:16px 20px;background:var(--green-tint);border-right:1px solid var(--line)}
+.tov-no{padding:16px 20px;background:#FFF1F2}
+.tov-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+.tov-yes .tov-label{color:var(--green)}
+.tov-no .tov-label{color:#C0392B}
+.tov-yes .tov-text{font-size:14px;color:var(--ink);line-height:1.55}
+.tov-no .tov-text{font-size:14px;color:var(--muted);line-height:1.55;text-decoration:line-through;text-decoration-color:rgba(192,57,43,.4)}
+
+/* Recruiter cards */
+.recruiter-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rec-card{
+  background:var(--card);border-radius:var(--r);border:1px solid var(--line);
+  padding:24px;box-shadow:var(--shadow-sm);text-align:center;
+}
+.rec-av-wrap{position:relative;display:inline-block;margin-bottom:16px}
+.rec-av{
+  width:72px;height:72px;border-radius:50%;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--hand);font-size:28px;color:#fff;font-weight:700;
+}
+.rec-status{
+  position:absolute;bottom:2px;right:2px;
+  width:14px;height:14px;border-radius:50%;border:2.5px solid var(--card);
+}
+.rec-status.online{background:var(--green)}
+.rec-name{font-weight:800;font-size:17px;letter-spacing:-.02em;margin-bottom:2px}
+.rec-hand{font-family:var(--hand);font-size:15px;color:var(--blue);margin-bottom:4px}
+.rec-role{font-family:var(--mono);font-size:11px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em;margin-bottom:16px}
+.rec-stat{font-size:13px;color:var(--muted);margin-bottom:16px}
+.rec-stat b{color:var(--ink);font-weight:700}
+/* Custom select */
+.custom-select{position:relative}
+.custom-select::after{content:"";position:absolute;right:16px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--muted);pointer-events:none}
+.field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:40px}
+.rec-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:10px;border-radius:var(--r-sm);
+  font-weight:700;font-size:13px;
+  background:var(--wa);color:#fff;border:0;cursor:pointer;
+  transition:background .14s;font-family:var(--display);
+}
+.rec-cta:hover{background:#1da851}
+
+/* Dark demo */
+.demo-dark{background:var(--ink);border-radius:var(--r);padding:40px;margin-top:24px}
+.demo-dark .dh{font-weight:800;font-size:32px;letter-spacing:-.03em;color:#fff;margin:0 0 12px}
+.demo-dark .dh .o{color:var(--orange)}
+.demo-dark .dsub{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:28px}
+.demo-dark .btn-row{display:flex;gap:14px;flex-wrap:wrap}
+
+/* Utils */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mt-0{margin-top:0}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .side{position:static;height:auto}
+  .wrap{padding:0 24px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- SIDEBAR -->
+<aside class="side">
+  <svg class="side-logo" viewBox="0 0 540 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M76.5679 5.69L49.3879 56.23V84.99C49.3879 88.03 47.9279 88.82 45.5579 88.82H32.3679C29.8579 88.82 28.5479 88.04 28.5479 84.99V56.23L0.307928 5.69C-0.352072 4.23 -0.0820715 1.98999 2.41793 1.98999H17.5979C20.6379 1.98999 21.9579 2.39 23.7979 5.95L39.2379 34.32L54.1479 5.95C55.8579 2.39 57.1879 1.98999 60.2179 1.98999H74.4679C76.9779 1.98999 77.2379 4.23 76.5779 5.69H76.5679Z" fill="#E94E1B"/>
+    <path d="M169.778 5.69V84.99C169.778 88.03 168.328 88.82 165.948 88.82H153.278C150.908 88.82 149.458 88.04 149.458 84.99V40.26L136.268 63.35C135.608 64.4 134.418 66.12 132.438 66.12H125.838C123.858 66.12 122.798 64.4 122.138 63.35L108.808 40.26V84.99C108.808 88.03 107.358 88.82 104.978 88.82H91.9179C89.5479 88.82 88.0879 88.04 88.0879 84.99V5.69C88.0879 3.31 88.8779 1.86 91.9179 1.86H104.978C109.468 1.86 109.988 4.76999 111.048 6.34999L129.128 38.81L147.338 6.34999C148.258 4.76999 148.918 1.86 153.278 1.86H165.948C168.988 1.86 169.778 3.31 169.778 5.69Z" fill="#15171C"/>
+    <path d="M261.808 88.82H247.958C245.058 88.82 244.008 88.04 242.948 84.87L239.248 74.45H206.918L203.228 84.87C202.168 88.04 201.118 88.82 198.208 88.82H184.358C181.458 88.82 181.458 86.71 182.118 85.12L211.408 6.08C212.458 3.31 213.908 1.98999 216.818 1.98999H229.488C232.388 1.98999 233.708 3.31 234.898 6.08L264.058 85.12C264.718 86.71 264.718 88.82 261.808 88.82ZM233.038 55.96L223.138 26.8L213.238 55.96H233.038Z" fill="#15171C"/>
+    <path d="M332.448 5.81999V16.77C332.448 19.14 331.658 20.6 328.618 20.6H308.428V84.99C308.428 88.03 306.978 88.82 304.598 88.82H291.538C289.168 88.82 287.708 88.04 287.708 84.99V20.6H267.388C264.348 20.6 263.568 19.15 263.568 16.77V5.81999C263.568 3.43999 264.358 1.98999 267.388 1.98999H328.618C331.658 1.98999 332.448 3.43999 332.448 5.81999Z" fill="#15171C"/>
+    <path d="M378.278 90.79C362.578 90.79 342.908 81.7 342.908 60.97V29.83C342.908 9.11 362.568 0 378.278 0C393.988 0 410.868 8.31999 412.588 25.07C412.588 28.24 411.538 28.9 408.498 28.9H395.828C393.058 28.9 392.928 26.39 391.878 24.81C389.108 20.46 385.408 18.48 378.288 18.48C369.578 18.48 363.638 23.36 363.638 31.67V59.12C363.638 67.57 369.578 72.32 378.288 72.32C385.408 72.32 391.088 69.68 392.138 63.34C392.538 60.7 392.808 58.59 395.708 58.59H408.648C411.548 58.59 412.598 59.91 412.598 63.08C412.598 80.1 394.658 90.78 378.288 90.78L378.278 90.79Z" fill="#15171C"/>
+    <path d="M499.978 5.81999V84.99C499.978 88.03 498.538 88.82 496.148 88.82H483.078C480.718 88.82 479.248 88.04 479.248 84.99V55.17H449.828V84.99C449.828 88.03 448.498 88.82 445.998 88.82H432.928C430.548 88.82 429.108 88.04 429.108 84.99V5.81999C429.108 2.77999 430.548 1.98999 432.928 1.98999H445.998C448.488 1.98999 449.828 2.77999 449.828 5.81999V35.64H479.248V5.81999C479.248 2.77999 480.708 1.98999 483.078 1.98999H496.148C498.528 1.98999 499.978 2.77999 499.978 5.81999Z" fill="#15171C"/>
+    <path d="M539.608 70.35V84.99C539.608 88.03 538.158 88.82 535.788 88.82H521.148C518.758 88.82 517.318 88.04 517.318 84.99V70.35C517.318 67.31 518.758 66.52 521.148 66.52H535.788C538.158 66.52 539.608 67.3 539.608 70.35Z" fill="#15171C"/>
+    <path d="M87.6379 107.75C89.2079 107.41 91.3579 107.21 93.4179 107.21C96.6779 107.21 98.8979 107.86 100.388 109.24C101.648 110.43 102.338 112.19 102.338 114.18C102.338 117.55 100.388 119.77 97.6979 120.81V120.89C99.6479 121.54 100.758 123.38 101.378 126.29C102.148 129.89 102.718 132.27 103.218 133.22H99.9279C99.5079 132.45 98.9679 130.19 98.3179 126.98C97.5879 123.42 96.2879 122.08 93.4179 122H90.8479V133.22H87.6279V107.75H87.6379ZM90.8579 119.55H93.6179C96.9879 119.55 99.1379 117.56 99.1379 114.57C99.1379 111.31 97.0679 109.74 93.6579 109.74C92.3179 109.74 91.3579 109.86 90.8579 110.01V119.55Z" fill="#E94E1B"/>
+    <path d="M118.938 121.08H110.008V130.5H120.048V133.22H106.798V107.4H119.518V110.12H110.018V118.39H118.948V121.07L118.938 121.08Z" fill="#E94E1B"/>
+    <path d="M140.008 132.49C138.938 133.06 136.828 133.56 134.148 133.56C127.518 133.56 122.658 129.12 122.658 120.57C122.658 112.02 127.978 107.05 134.798 107.05C137.518 107.05 139.278 107.62 140.048 108.05L139.278 110.69C138.208 110.15 136.788 109.77 134.878 109.77C129.818 109.77 126.028 113.29 126.028 120.38C126.028 127.47 129.438 130.8 134.758 130.8C136.558 130.8 138.278 130.42 139.388 129.88L139.998 132.48L140.008 132.49Z" fill="#E94E1B"/>
+  </svg>
+  <div class="side-meta"><b>v4.2</b> — Juni 2026<br>Bricolage Grotesque<br>Space Mono · Caveat<br>#EFEAE0 achtergrond</div>
+  <nav>
+    <a href="#cover"><span class="n">00</span>Cover</a>
+    <a href="#principes"><span class="n">01</span>Principes</a>
+    <a href="#kleuren"><span class="n">02</span>Kleuren</a>
+    <a href="#typografie"><span class="n">03</span>Typografie</a>
+    <a href="#spacing"><span class="n">04</span>Spacing</a>
+    <a href="#radius"><span class="n">05</span>Radius</a>
+    <a href="#knoppen"><span class="n">06</span>Knoppen</a>
+    <a href="#vacaturekaart"><span class="n">07</span>Vacaturekaart</a>
+    <a href="#sectoren"><span class="n">08</span>Sectorblokken</a>
+    <a href="#formulieren"><span class="n">09</span>Formulieren</a>
+    <a href="#tov"><span class="n">10</span>Tone of Voice</a>
+    <a href="#recruiters"><span class="n">11</span>Recruiter-kaart</a>
+    <a href="#motief"><span class="n">12</span>Grafisch motief</a>
+    <a href="#dark"><span class="n">13</span>Dark demo</a>
+    <a href="#foto"><span class="n">14</span>Recruiter foto</a>
+    <a href="#hero"><span class="n">15</span>Hero component</a>
+    <a href="#fotografie"><span class="n">16</span>Fotografie</a>
+    <a href="#iconen"><span class="n">17</span>Iconen</a>
+    <a href="#reviews"><span class="n">18</span>Reviews strip</a>
+  </nav>
+  <div class="side-foot">Vakmanschap<br>verbindt.</div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- 00 COVER -->
+<section id="cover" class="block" style="padding-top:0">
+<div class="wrap">
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-meta"><b>Ymatch Design System</b><br>v4.0 · Juni 2026 · Recruitment &amp; Detachering</div>
+    <div class="cover-badges">
+      <span class="cover-badge">Bricolage Grotesque</span>
+      <span class="cover-badge">Space Mono</span>
+      <span class="cover-badge">Caveat</span>
+      <span class="cover-badge">#EFEAE0</span>
+    </div>
+  </div>
+  <h1>Y<span class="o">match</span><br><em>design</em></h1>
+  <p class="cover-lede">Warm. Vakkundig. Direct. Een huisstijl die past bij mensen die met hun handen werken én bij de professionals die hen begeleiden.</p>
+  <div class="cover-dim" aria-hidden="true">
+    <span>144px</span>
+    <div class="cover-dim-line"></div>
+    <span>display</span>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- 01 PRINCIPES -->
+<section id="principes" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">01 — Principes</span>
+    <h2>Wie zijn wij,<br><em>wie zijn wij niet</em></h2>
+    <p>Alles wat je bouwt, schrijft of ontwerpt voor Ymatch moet je aan deze vijf principes kunnen toetsen.</p>
+  </div>
+  <div class="principles">
+    <div class="principle">
+      <div class="pn">01 — VUUR</div>
+      <h4>Warm &amp; persoonlijk</h4>
+      <p>Je spreekt mensen aan als mensen. Niet als "kandidaten". Jij/je, directe taal, geen corporate afstand. Je kent hun naam.</p>
+    </div>
+    <div class="principle">
+      <div class="pn">02 — PUUR</div>
+      <h4>Eerlijk &amp; direct</h4>
+      <p>Salaris vermeld je altijd. Procedure beschrijf je concreet. Geen "marktconform". Zeg wat je bedoelt in de eerste zin.</p>
+    </div>
+    <div class="principle">
+      <div class="pn">03 — VAKMANSCHAP</div>
+      <h4>Vakkundig &amp; specifiek</h4>
+      <p>Je schrijft voor een elektromonteur die weet wat hij doet. Geen uitleg over "wat detachering is". Respect voor het vak.</p>
+    </div>
+    <div class="principle">
+      <div class="pn">04 — ENERGIE</div>
+      <h4>Actief, nooit passief</h4>
+      <p>"Wij bellen je morgen" — niet "er zal contact worden opgenomen". Actieve zinnen. Gas geven. Niet afwachten.</p>
+    </div>
+    <div class="principle">
+      <div class="pn">05 — VERBINDING</div>
+      <h4>Relatie boven transactie</h4>
+      <p>Ymatch plaatst voor de lange termijn. Dat moet je voelen in elke CTA, elke recruiter-kaart, elke vacaturepagina.</p>
+    </div>
+    <div class="principle" style="background:var(--ink);color:#fff;border-color:var(--ink)">
+      <div class="pn" style="color:var(--orange)">NIET —</div>
+      <h4 style="color:#fff">Wat Ymatch niet is</h4>
+      <p style="color:rgba(255,255,255,.65)">Groot, anoniem, corporate. Geen stockfoto's. Geen "marktleider in talent solutions". Geen slogans zonder inhoud. Nooit passief.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 02 KLEUREN -->
+<section id="kleuren" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">02 — Kleursysteem</span>
+    <h2>Vier kleuren,<br><em>één hiërarchie</em></h2>
+    <p>Oranje is het merk — niet de knop. Ink is de CTA. Groen is beschikbaarheid en actie. Blauw is technisch en informatief.</p>
+  </div>
+  <div class="sub">Primaire kleuren</div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background:#E94E1B"></div>
+      <div class="meta">
+        <div class="nm">Vuur Oranje</div>
+        <div class="hex">#E94E1B</div>
+        <div class="use">Merkkleur. Accenten, iconen, hover states, de Y in het logo. Nooit als achtergrond van de primaire CTA.</div>
+        <div class="var">--orange</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#15171C"></div>
+      <div class="meta">
+        <div class="nm">Ink</div>
+        <div class="hex">#15171C</div>
+        <div class="use">Primaire CTA-knop. Valt altijd op — ook op een oranje-rijke pagina. Maximaal contrast.</div>
+        <div class="var">--ink</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#2D7A4F"></div>
+      <div class="meta">
+        <div class="nm">Staalgroen</div>
+        <div class="hex">#2D7A4F</div>
+        <div class="use">Beschikbaar, actief, WhatsApp, succes, "nieuw"-badge. Levendig genoeg naast oranje.</div>
+        <div class="var">--green</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#2E4A6B"></div>
+      <div class="meta">
+        <div class="nm">Draft Blauw</div>
+        <div class="hex">#2E4A6B</div>
+        <div class="use">Informatief, maatlijnen, technisch accent. Spaarzaam — derde kleur in de hiërarchie.</div>
+        <div class="var">--blue</div>
+      </div>
+    </div>
+  </div>
+  <div class="sub">Achtergronden</div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background:#EFEAE0"></div>
+      <div class="meta">
+        <div class="nm">Warmwit</div>
+        <div class="hex">#EFEAE0</div>
+        <div class="use">Pagina-achtergrond. Warm genoeg om koud wit te vermijden, licht genoeg voor leesbaarheid.</div>
+        <div class="var">--bg</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#F8F5EF"></div>
+      <div class="meta">
+        <div class="nm">Card</div>
+        <div class="hex">#F8F5EF</div>
+        <div class="use">Achtergrond van cards en formuliervelden. Iets lichter dan de pagina-achtergrond.</div>
+        <div class="var">--card</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#E6E0D4"></div>
+      <div class="meta">
+        <div class="nm">Warmwit Donker</div>
+        <div class="hex">#E6E0D4</div>
+        <div class="use">Hover states, actieve filters, dividers.</div>
+        <div class="var">--bg-2</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#5C5A54"></div>
+      <div class="meta">
+        <div class="nm">Muted</div>
+        <div class="hex">#5C5A54</div>
+        <div class="use">Subtekst, metadata, beschrijvingen. Niet voor koppen.</div>
+        <div class="var">--muted</div>
+      </div>
+    </div>
+  </div>
+  <div class="sub">Functionele tints</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+    <div style="padding:12px 18px;background:var(--orange-tint);border:1px solid var(--orange-soft);border-radius:var(--r-sm);font-size:13px">
+      <span style="font-family:var(--mono);font-size:10px;color:var(--orange);font-weight:700;display:block;margin-bottom:4px">ORANGE TINT</span>
+      Sector-badge achtergrond op vacaturekaart
+    </div>
+    <div style="padding:12px 18px;background:var(--green-tint);border:1px solid var(--green-soft);border-radius:var(--r-sm);font-size:13px">
+      <span style="font-family:var(--mono);font-size:10px;color:var(--green);font-weight:700;display:block;margin-bottom:4px">GREEN TINT</span>
+      Salaris-blok op vacaturekaart, succes-feedback
+    </div>
+    <div style="padding:12px 18px;background:var(--blue-tint);border:1px solid var(--blue-soft);border-radius:var(--r-sm);font-size:13px">
+      <span style="font-family:var(--mono);font-size:10px;color:var(--blue);font-weight:700;display:block;margin-bottom:4px">BLUE TINT</span>
+      Techniek-badge, info-states, tooltips
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 03 TYPOGRAFIE -->
+<section id="typografie" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">03 — Typografie</span>
+    <h2>Drie fonts,<br><em>elk op z'n plek</em></h2>
+    <p>Bricolage voor impact. Space Mono voor labels en technische data. Caveat spaarzaam — namen onder quotes, handgeschreven accenten.</p>
+  </div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:40px 40px 32px;overflow:hidden;position:relative">
+    <div style="position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;border:1.5px solid var(--orange);opacity:.08" aria-hidden="true"></div>
+    <div class="specimen-display">Vak<span class="o">man</span><br><em>schap</em></div>
+    <p class="specimen-body">Ymatch verbindt vakprofessionals met bedrijven die hen verdienen. Persoonlijk, snel en met kennis van het vak.</p>
+    <p class="specimen-hand">— Jij verdient de juiste match.</p>
+    <p class="specimen-mono">Bouw · Techniek · Office · Rotterdam · ZZP</p>
+  </div>
+  <div class="dim" style="max-width:400px;margin:32px 0 0" aria-hidden="true"><span>Bricolage Grotesque — opsz 96</span></div>
+  <div class="type-scale">
+    <div class="scale-row">
+      <div class="tag"><b>Display / H1</b>font-weight: 800<br>letter-spacing: -.05em</div>
+      <div style="font-family:var(--display);font-weight:800;font-size:52px;letter-spacing:-.05em;line-height:.9">52px</div>
+      <div class="use">Hero-koppen, sectorpagina's</div>
+    </div>
+    <div class="scale-row">
+      <div class="tag"><b>Heading / H2</b>font-weight: 700<br>letter-spacing: -.035em</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:38px;letter-spacing:-.035em;line-height:.95">38px</div>
+      <div class="use">Sectie-titels, over-pagina</div>
+    </div>
+    <div class="scale-row">
+      <div class="tag"><b>Heading / H3</b>font-weight: 700<br>letter-spacing: -.025em</div>
+      <div style="font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-.025em">28px</div>
+      <div class="use">Vacaturetitels, kaart-koppen</div>
+    </div>
+    <div class="scale-row">
+      <div class="tag"><b>H4 / Subhead</b>font-weight: 600</div>
+      <div style="font-family:var(--display);font-weight:600;font-size:20px">20px</div>
+      <div class="use">Dienst-labels, recruiter naam</div>
+    </div>
+    <div class="scale-row">
+      <div class="tag"><b>Body groot</b>font-weight: 400</div>
+      <div style="font-size:18px;color:var(--muted)">18px — Intro-alinea's, vacaturebeschrijving</div>
+      <div class="use">Eerste alinea van elke pagina</div>
+    </div>
+    <div class="scale-row">
+      <div class="tag"><b>Body</b>font-weight: 400</div>
+      <div style="font-size:16px;color:var(--muted)">16px — Standaard bodytekst door de hele site</div>
+      <div class="use">Alle lopende tekst</div>
+    </div>
+    <div class="scale-row">
+      <div class="tag"><b>Label / mono</b><span style="font-family:var(--mono)">Space Mono 700</span></div>
+      <div style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)">BOUW · ROTTERDAM · ZZP · €3.200/MND</div>
+      <div class="use">Badges, meta, eyebrows, HEX-codes</div>
+    </div>
+    <div class="scale-row">
+      <div class="tag"><b>Handschrift</b><span style="font-family:var(--hand)">Caveat 600</span></div>
+      <div style="font-family:var(--hand);font-size:22px;font-weight:600;color:var(--blue)">— Sander van der Berg, Consultant Bouw</div>
+      <div class="use">Namen onder quotes, handgeschreven accenten. Spaarzaam.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 04 SPACING -->
+<section id="spacing" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">04 — Spacing</span>
+    <h2>8pt <em>basisgrid</em></h2>
+    <p>Alle spacing is een veelvoud van 8. Geen uitzonderingen.</p>
+  </div>
+  <div class="space-grid">
+    <div class="space-row"><div class="bar" style="height:4px;width:4px"></div><div class="lab"><b>4px</b>--space-1</div></div>
+    <div class="space-row"><div class="bar" style="height:8px;width:8px"></div><div class="lab"><b>8px</b>--space-2</div></div>
+    <div class="space-row"><div class="bar" style="height:12px;width:12px"></div><div class="lab"><b>12px</b>--space-3</div></div>
+    <div class="space-row"><div class="bar" style="height:16px;width:16px"></div><div class="lab"><b>16px</b>--space-4</div></div>
+    <div class="space-row"><div class="bar" style="height:24px;width:24px"></div><div class="lab"><b>24px</b>--space-6</div></div>
+    <div class="space-row"><div class="bar" style="height:32px;width:32px"></div><div class="lab"><b>32px</b>--space-8</div></div>
+    <div class="space-row"><div class="bar" style="height:48px;width:48px"></div><div class="lab"><b>48px</b>--space-12</div></div>
+    <div class="space-row"><div class="bar" style="height:64px;width:64px"></div><div class="lab"><b>64px</b>--space-16</div></div>
+    <div class="space-row"><div class="bar" style="height:80px;width:80px"></div><div class="lab"><b>80px</b>--space-20</div></div>
+    <div class="space-row"><div class="bar" style="height:96px;width:96px"></div><div class="lab"><b>96px</b>--space-24</div></div>
+  </div>
+  <p class="note" style="margin-top:28px"><b>Mobiel-first:</b> 75% van het verkeer is mobiel. Minimale touch target: 44×44px. Ontwerp altijd voor 375px breed eerst.</p>
+</div>
+</section>
+
+<!-- 05 RADIUS -->
+<section id="radius" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">05 — Border Radius</span>
+    <h2>Rond maar <em>niet speels</em></h2>
+    <p>14px op cards geeft warmte. 8px op knoppen is professioneel. 4px op badges is scherp. Consistent doorvoeren.</p>
+  </div>
+  <div class="radius-grid">
+    <div class="radius-item">
+      <div class="radius-demo" style="border-radius:4px"></div>
+      <div class="t-name">XS — 4px</div>
+      <div class="t-val">--r-xs</div>
+      <div style="font-size:12px;color:var(--muted);max-width:88px">Badges, chips, labels</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-demo" style="border-radius:8px"></div>
+      <div class="t-name">SM — 8px</div>
+      <div class="t-val">--r-sm</div>
+      <div style="font-size:12px;color:var(--muted);max-width:88px">Knoppen, inputs, kleine kaarten</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-demo" style="border-radius:14px;border-color:var(--orange)"></div>
+      <div class="t-name" style="color:var(--orange)">MD — 14px ★</div>
+      <div class="t-val">--r</div>
+      <div style="font-size:12px;color:var(--muted);max-width:88px">Cards, vacaturekaarten — standaard</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-demo" style="border-radius:20px"></div>
+      <div class="t-name">LG — 20px</div>
+      <div class="t-val">--r-lg</div>
+      <div style="font-size:12px;color:var(--muted);max-width:88px">Modals, hero-elementen</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-demo" style="border-radius:999px;width:88px;height:44px"></div>
+      <div class="t-name">Pill</div>
+      <div class="t-val">--r-pill</div>
+      <div style="font-size:12px;color:var(--muted);max-width:88px">Filterchips, tags, statusbadges</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 06 KNOPPEN -->
+<section id="knoppen" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">06 — Knoppen</span>
+    <h2>Ink voor de <em>echte CTA</em></h2>
+    <p>Oranje is het merk — niet de knop. Ink (#15171C) valt altijd op, ook op een oranje-rijke pagina. Oranje gebruik je voor hover en secondaire acties.</p>
+  </div>
+  <div class="sub">Primaire knoppen</div>
+  <div class="btn-demo">
+    <button class="btn btn-primary">Solliciteer direct</button>
+    <button class="btn btn-orange">Vacature bekijken</button>
+    <button class="btn btn-outline">Meer informatie</button>
+    <button class="btn btn-ghost">Neem contact op</button>
+    <button class="btn btn-wa">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp ons
+    </button>
+  </div>
+  <div class="sub">Klein formaat (40px)</div>
+  <div class="btn-demo">
+    <button class="btn btn-primary btn-sm">Solliciteer</button>
+    <button class="btn btn-outline btn-sm">Opslaan</button>
+    <button class="btn btn-ghost btn-sm">Delen</button>
+  </div>
+  <div class="sub">Filterchips — vacaturebank</div>
+  <div class="chips">
+    <button class="chip-filter active">Alle sectoren</button>
+    <button class="chip-filter">Bouw</button>
+    <button class="chip-filter">Techniek</button>
+    <button class="chip-filter">Office</button>
+    <button class="chip-filter">ZZP</button>
+    <button class="chip-filter">Rotterdam</button>
+    <button class="chip-filter">Fulltime</button>
+    <button class="chip-filter">Parttime</button>
+    <button class="chip-filter">Detachering</button>
+  </div>
+  <p class="note" style="margin-top:28px"><b>Hiërarchie:</b> Elke pagina heeft maximaal één ink-knop (primaire CTA). Oranje voor secondaire acties. Ghost voor tertiaire links. WhatsApp altijd groen.</p>
+</div>
+</section>
+
+<!-- 07 VACATUREKAART -->
+<section id="vacaturekaart" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">07 — Vacaturekaart</span>
+    <h2>Salaris altijd <em>zichtbaar</em></h2>
+    <p>72% afwijzing begint bij verkeerde verwachtingen. Salaris staat prominent op elke kaart — niet verstopt in de detailpagina.</p>
+  </div>
+  <div class="card-grid">
+    <div class="vac-card featured">
+      <div class="card-badges">
+        <span class="badge badge-sector">Bouw</span>
+        <span class="badge badge-new">Nieuw</span>
+      </div>
+      <h3>Timmerman</h3>
+      <p class="vac-sub">Rotterdam · Fulltime · Direct in dienst</p>
+      <div class="vac-salary">
+        <span class="slabel">Salaris</span>
+        <span class="amount">€3.200 – €3.900/mnd</span>
+      </div>
+      <div class="vac-divider"></div>
+      <div class="vac-recruiter">
+        <div class="rec-av-sm" style="background:var(--orange)">JB</div>
+        <div class="recruiter-info">
+          <div class="name">Jan Bakker</div>
+          <div class="role">Consultant Bouw</div>
+        </div>
+        <span class="vac-cta">Bekijk →</span>
+      </div>
+    </div>
+    <div class="vac-card">
+      <div class="card-badges">
+        <span class="badge badge-zzp">ZZP</span>
+        <span class="badge badge-blue">Techniek</span>
+      </div>
+      <h3>Elektromonteur</h3>
+      <p class="vac-sub">Capelle a/d IJssel · Opdracht · 6 mnd</p>
+      <div class="vac-salary">
+        <span class="slabel">Tarief</span>
+        <span class="amount">€58 – €72/uur</span>
+      </div>
+      <div class="vac-divider"></div>
+      <div class="vac-recruiter">
+        <div class="rec-av-sm" style="background:var(--green)">SB</div>
+        <div class="recruiter-info">
+          <div class="name">Sander Berg</div>
+          <div class="role">Consultant Techniek</div>
+        </div>
+        <span class="vac-cta">Bekijk →</span>
+      </div>
+    </div>
+    <div class="vac-card">
+      <div class="card-badges">
+        <span class="badge badge-blue">Office</span>
+      </div>
+      <h3>Werkvoorbereider</h3>
+      <p class="vac-sub">Rotterdam · HBO · Detachering</p>
+      <div class="vac-salary">
+        <span class="slabel">Salaris</span>
+        <span class="amount">€3.800 – €4.600/mnd</span>
+      </div>
+      <div class="vac-divider"></div>
+      <div class="vac-recruiter">
+        <div class="rec-av-sm" style="background:var(--blue)">LV</div>
+        <div class="recruiter-info">
+          <div class="name">Lisa Visser</div>
+          <div class="role">Consultant Office</div>
+        </div>
+        <span class="vac-cta">Bekijk →</span>
+      </div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:24px"><b>Hover state:</b> Oranje top-border + card lift (translateY -3px) + subtiele oranje outline. Subtiel is genoeg.</p>
+</div>
+</section>
+
+<!-- 08 SECTORBLOKKEN -->
+<section id="sectoren" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">08 — Sectorblokken</span>
+    <h2>Drie deuren,<br><em>één klik</em></h2>
+    <p>Homepage splitst direct op sector. Geen dropdown, geen zoeken — gewoon kiezen wat je bent.</p>
+  </div>
+  <div class="sector-grid">
+    <div class="sector-card sc-bouw">
+      <div class="geo" style="background:var(--orange);opacity:.07"></div>
+      <div class="geo2" style="border-color:var(--orange);opacity:.12"></div>
+      <div>
+        <h3>Bouw</h3>
+        <p class="sec-sub">Timmerman · Metselaar<br>Uitvoerder · Wachtbaas</p>
+      </div>
+      <span class="sec-cta">Bekijk vacatures →</span>
+    </div>
+    <div class="sector-card sc-tech">
+      <div class="geo" style="background:#fff;opacity:.07"></div>
+      <div class="geo2" style="border-color:#fff;opacity:.12"></div>
+      <div>
+        <h3>Techniek</h3>
+        <p class="sec-sub">Elektromonteur · Lasser<br>Installateur · Monteur</p>
+      </div>
+      <span class="sec-cta">Bekijk vacatures →</span>
+    </div>
+    <div class="sector-card sc-office">
+      <div class="geo" style="background:#fff;opacity:.06"></div>
+      <div class="geo2" style="border-color:#fff;opacity:.10"></div>
+      <div>
+        <h3>Office</h3>
+        <p class="sec-sub">Werkvoorbereider · Planner<br>Engineer · Projectleider</p>
+      </div>
+      <span class="sec-cta">Bekijk vacatures →</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 09 FORMULIEREN -->
+<section id="formulieren" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">09 — Formulieren</span>
+    <h2>Zo min mogelijk, <em>zo duidelijk mogelijk</em></h2>
+    <p>Elk extra veld kost je sollicitaties. Vraag alleen wat je nu nodig hebt.</p>
+  </div>
+  <div class="grid-2">
+    <div class="form-demo">
+      <div class="field">
+        <label>Naam</label>
+        <input type="text" placeholder="Jan de Vries"/>
+      </div>
+      <div class="field">
+        <label>Telefoonnummer</label>
+        <div class="hint">We bellen je binnen 24 uur terug</div>
+        <input type="tel" placeholder="+31 6 12 34 56 78"/>
+      </div>
+      <div class="field">
+        <label>Sector</label>
+        <div class="custom-select">
+          <select>
+            <option>Bouw &amp; Afbouw</option>
+            <option>Techniek &amp; Installatie</option>
+            <option>Office &amp; Commercie</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Korte motivatie</label>
+        <textarea placeholder="Wat zoek je, en waarom Ymatch?"></textarea>
+      </div>
+      <div class="field error">
+        <label>E-mailadres</label>
+        <input type="email" placeholder="jan@email.nl" value="jan@"/>
+        <div class="error-msg">Vul een geldig e-mailadres in</div>
+      </div>
+      <button class="btn btn-primary" style="width:100%">Verstuur — wij bellen je</button>
+    </div>
+    <div>
+      <p class="note"><b>Sollicitatieformulier:</b> naam, telefoon, sector, eventueel CV. Geen lange tekstvelden. WhatsApp altijd zichtbaar naast het formulier.</p>
+      <p class="note" style="margin-top:16px"><b>Focus state:</b> Oranje border + zachte oranje glow. Consistent met de merkkleur.</p>
+      <p class="note" style="margin-top:16px"><b>Error state:</b> Rode border + foutmelding direct onder het veld. Geen modals voor validatie.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 10 TONE OF VOICE -->
+<section id="tov" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">10 — Tone of Voice</span>
+    <h2>Zo schrijft <em>Ymatch</em></h2>
+    <p>Altijd jij/je. Nooit passief. Salaris altijd noemen. Eerste zin al to the point.</p>
+  </div>
+  <div class="tov-grid">
+    <div class="tov-card">
+      <div class="tov-head">
+        <div class="attr">Direct &amp; eerlijk</div>
+        <div class="rule">Zeg het in de eerste zin. Geen omhaal, geen corporate opsmuk.</div>
+      </div>
+      <div class="tov-body">
+        <div class="tov-yes"><div class="tov-label">Goed</div><div class="tov-text">"Je verdient €3.200 tot €3.900 per maand. We bellen je vandaag nog."</div></div>
+        <div class="tov-no"><div class="tov-label">Niet</div><div class="tov-text">"Ymatch biedt een marktconforme beloning en zal te zijner tijd contact opnemen."</div></div>
+      </div>
+    </div>
+    <div class="tov-card">
+      <div class="tov-head">
+        <div class="attr">Warm &amp; persoonlijk</div>
+        <div class="rule">Mensen, geen "kandidaten" of "opdrachtgevers".</div>
+      </div>
+      <div class="tov-body">
+        <div class="tov-yes"><div class="tov-label">Goed</div><div class="tov-text">"Wij zorgen dat jij de beste stap zet. Niet zomaar een baan, maar de juiste."</div></div>
+        <div class="tov-no"><div class="tov-label">Niet</div><div class="tov-text">"Ymatch streeft ernaar kandidaten te voorzien van passende arbeidsmogelijkheden."</div></div>
+      </div>
+    </div>
+    <div class="tov-card">
+      <div class="tov-head">
+        <div class="attr">Energiek &amp; actief</div>
+        <div class="rule">Actieve zinnen altijd. Passieve constructies nooit.</div>
+      </div>
+      <div class="tov-body">
+        <div class="tov-yes"><div class="tov-label">Goed</div><div class="tov-text">"Solliciteer nu — wij bellen je morgen terug voor een korte kennismaking."</div></div>
+        <div class="tov-no"><div class="tov-label">Niet</div><div class="tov-text">"Er kan gesolliciteerd worden via onderstaand formulier, waarna contact wordt opgenomen."</div></div>
+      </div>
+    </div>
+    <div class="tov-card">
+      <div class="tov-head">
+        <div class="attr">Specifiek &amp; vakkundig</div>
+        <div class="rule">Je schrijft voor een professional. Respect voor het vak.</div>
+      </div>
+      <div class="tov-body">
+        <div class="tov-yes"><div class="tov-label">Goed</div><div class="tov-text">"Je hebt minimaal 3 jaar ervaring als elektromonteur en werkt graag zelfstandig."</div></div>
+        <div class="tov-no"><div class="tov-label">Niet</div><div class="tov-text">"Wij zoeken een gedreven teamspeler met passie voor de technische sector."</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 11 RECRUITER KAARTEN -->
+<section id="recruiters" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">11 — Recruiter-kaart</span>
+    <h2>Echte mensen, <em>directe lijn</em></h2>
+    <p>Naam, foto, sector en een directe WhatsApp-knop. Geen contactformulier als tussenstap.</p>
+  </div>
+  <div class="recruiter-cards">
+    <div class="rec-card">
+      <div class="rec-av-wrap">
+        <div class="rec-av" style="background:var(--orange)">JB</div>
+        <div class="rec-status online"></div>
+      </div>
+      <div class="rec-name">Jan Bakker</div>
+      <div class="rec-hand">— altijd bereikbaar</div>
+      <div class="rec-role">Consultant Bouw</div>
+      <div class="rec-stat"><b>47</b> plaatsingen dit jaar</div>
+      <button class="rec-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        App Jan direct
+      </button>
+    </div>
+    <div class="rec-card">
+      <div class="rec-av-wrap">
+        <div class="rec-av" style="background:var(--green)">SB</div>
+        <div class="rec-status online"></div>
+      </div>
+      <div class="rec-name">Sander Berg</div>
+      <div class="rec-hand">— kennis van het vak</div>
+      <div class="rec-role">Consultant Techniek</div>
+      <div class="rec-stat"><b>62</b> plaatsingen dit jaar</div>
+      <button class="rec-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        App Sander direct
+      </button>
+    </div>
+    <div class="rec-card">
+      <div class="rec-av-wrap">
+        <div class="rec-av" style="background:var(--blue)">LV</div>
+        <div class="rec-status" style="background:var(--subtle)"></div>
+      </div>
+      <div class="rec-name">Lisa Visser</div>
+      <div class="rec-hand">— scherp in Office</div>
+      <div class="rec-role">Consultant Office</div>
+      <div class="rec-stat"><b>38</b> plaatsingen dit jaar</div>
+      <button class="rec-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        App Lisa direct
+      </button>
+    </div>
+  </div>
+  <p class="note" style="margin-top:24px"><b>Caveat spaarzaam:</b> het handschrift-font verschijnt alleen bij recruiter-kaarten, quote-attributies en de Over ons pagina. Nooit in bodytekst of navigatie.</p>
+</div>
+</section>
+
+<!-- 12 GRAFISCH MOTIEF -->
+<section id="motief" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">12 — Grafisch motief</span>
+    <h2>Bouwtekening <em>als taal</em></h2>
+    <p>Twee decoratieve elementen die de verbinding naar bouw en techniek maken — zonder clichéhelmen of boardingpasses.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px">
+      <div class="sub mt-0">Cirkel-motief (bout / doorsnede)</div>
+      <div style="display:flex;gap:24px;align-items:center;margin-bottom:20px">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="46" stroke="#E94E1B" stroke-width="2" opacity=".15"/>
+          <circle cx="50" cy="50" r="34" stroke="#E94E1B" stroke-width="1.5" opacity=".25"/>
+          <circle cx="50" cy="50" r="18" fill="#E94E1B" opacity=".2"/>
+          <circle cx="50" cy="50" r="8" fill="#E94E1B"/>
+        </svg>
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="40" r="36" stroke="#15171C" stroke-width="1.5" opacity=".12"/>
+          <circle cx="40" cy="40" r="24" stroke="#15171C" stroke-width="1" opacity=".18"/>
+          <circle cx="40" cy="40" r="10" fill="#15171C" opacity=".25"/>
+        </svg>
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="28" stroke="#2E4A6B" stroke-width="1.5" opacity=".2"/>
+          <circle cx="32" cy="32" r="16" stroke="#2E4A6B" stroke-width="1" opacity=".3"/>
+          <circle cx="32" cy="32" r="6" fill="#2E4A6B" opacity=".4"/>
+        </svg>
+      </div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6">Refereert aan bouten, pijpen en technische doorsnedes. Gebruik als achtergrond-decoratie op hero-secties op 5–12% opacity. Nooit over tekst.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px">
+      <div class="sub mt-0">Maatlijnen (bouwtekening)</div>
+      <div style="background:var(--bg-2);border-radius:var(--r-sm);padding:28px;position:relative;overflow:hidden">
+        <div style="position:relative;height:1px;background:var(--blue-soft);margin-bottom:24px">
+          <div style="position:absolute;top:-5px;left:0;width:1px;height:11px;background:var(--blue)"></div>
+          <div style="position:absolute;top:-5px;right:0;width:1px;height:11px;background:var(--blue)"></div>
+          <span style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--bg-2);padding:0 8px;font-family:var(--mono);font-size:10px;color:var(--blue)">320px</span>
+        </div>
+        <div style="font-size:22px;font-weight:800;letter-spacing:-.02em">Timmerman</div>
+        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px">ROTTERDAM · BOUW · FULLTIME</div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:16px;line-height:1.6">Maatlijnen als decoratief detail op hero-secties. Geeft technisch karakter zonder letterlijk "bouw" te roepen.</p>
+    </div>
+  </div>
+  <div class="sub">Stippelgrid — paginatextuur</div>
+  <div style="background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:28px;background-image:radial-gradient(circle,rgba(21,23,28,.08) 1.2px,transparent 1.4px);background-size:24px 24px">
+    <div style="font-size:20px;font-weight:700;letter-spacing:-.02em">Vakmanschap verbindt.</div>
+    <div style="font-size:14px;color:var(--muted);margin-top:8px">De stippelgrid is de achtergrondtextuur van de hele website — subtiel, technisch, consistent.</div>
+  </div>
+
+  <div class="sub">Raster — marketing-textuur</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div style="background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:32px;overflow:hidden;position:relative;min-height:160px;background-image:linear-gradient(rgba(46,74,107,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(46,74,107,.07) 1px,transparent 1px);background-size:20px 20px">
+      <div style="font-size:14px;color:var(--muted);margin-bottom:16px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--blue)">Raster licht — marketing</div>
+      <div style="font-family:var(--hand);font-size:36px;color:var(--blue);transform:rotate(-2deg);display:inline-block">"Snel geholpen,<br>top bureau!"</div>
+    </div>
+    <div style="background:var(--ink);border-radius:var(--r);padding:32px;overflow:hidden;position:relative;min-height:160px;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px">
+      <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.4);margin-bottom:16px">Raster donker — social content</div>
+      <div style="font-family:var(--hand);font-size:36px;color:var(--orange);transform:rotate(-1.5deg);display:inline-block">"Wij bellen je<br>vandaag nog."</div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:16px"><b>Rastergebruik:</b> het lichte raster (blauwe lijnen, 7% opacity, 20×20px) is de bouwtekening-achtergrond voor social posts, presentaties en marketingmateriaal. Gecombineerd met Caveat-handschrift ontstaat een herkenbare Ymatch-stijl voor quotes en korte berichten.</p>
+</div>
+</section>
+
+<!-- 13 DARK DEMO -->
+<section id="dark" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">13 — Dark demo</span>
+    <h2>Ink als <em>achtergrond</em></h2>
+    <p>Gebruik de donkere variant voor hero-secties, CTA-banners en de footer. Niet voor hele pagina's.</p>
+  </div>
+  <div class="demo-dark">
+    <div class="dh">Klaar voor jouw <span class="o">volgende stap?</span></div>
+    <p class="dsub">Wij bellen je morgen terug. Beloofd.</p>
+    <div class="btn-row">
+      <button class="btn btn-orange">Solliciteer direct</button>
+      <button class="btn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3)">Bekijk vacatures</button>
+      <button class="btn btn-wa">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp ons
+      </button>
+    </div>
+  </div>
+  <p class="note" style="margin-top:24px"><b>In de dark sectie:</b> oranje knop is hier wél de primaire CTA — omdat er geen andere oranje elementen zijn, valt hij wél op. Context bepaalt de hiërarchie.</p>
+</div>
+</section>
+
+<!-- 14 RECRUITER — FOTO VARIANT -->
+<section id="foto" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">14 — Recruiter foto-variant</span>
+    <h2>Echte foto's,<br><em>zelfde component</em></h2>
+    <p>Als echte teamfoto's beschikbaar zijn vervangt een <code style="font-family:var(--mono);font-size:14px;background:var(--bg-2);padding:2px 8px;border-radius:4px">&lt;img&gt;</code> de initialen-cirkel. De rest van de kaart blijft identiek.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:760px">
+
+    <!-- Initialen variant (placeholder) -->
+    <div>
+      <div class="sub mt-0">Initialen (placeholder)</div>
+      <div class="rec-card" style="max-width:320px">
+        <div class="rec-av-wrap">
+          <div class="rec-av" style="background:var(--orange)">JB</div>
+          <div class="rec-status online"></div>
+        </div>
+        <div class="rec-name">Jan Bakker</div>
+        <div class="rec-hand">— altijd bereikbaar</div>
+        <div class="rec-role">Consultant Bouw</div>
+        <div class="rec-stat"><b>47</b> plaatsingen dit jaar</div>
+        <button class="rec-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          App Jan direct
+        </button>
+      </div>
+    </div>
+
+    <!-- Foto variant -->
+    <div>
+      <div class="sub mt-0">Foto (productie)</div>
+      <div class="rec-card" style="max-width:320px">
+        <div class="rec-av-wrap">
+          <!-- img vervangt de initialen-div. Zelfde afmetingen: 72×72px, border-radius:50% -->
+          <div style="width:72px;height:72px;border-radius:50%;overflow:hidden;margin:0 auto;background:var(--bg-2);display:flex;align-items:center;justify-content:center">
+            <!-- Placeholder voor echte foto: <img src="jan-bakker.jpg" alt="Jan Bakker" style="width:100%;height:100%;object-fit:cover"> -->
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="16" r="8" fill="var(--subtle)" opacity=".4"/>
+              <path d="M4 36c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="var(--subtle)" stroke-width="2" fill="none" opacity=".3"/>
+            </svg>
+          </div>
+          <div class="rec-status online"></div>
+        </div>
+        <div class="rec-name">Jan Bakker</div>
+        <div class="rec-hand">— altijd bereikbaar</div>
+        <div class="rec-role">Consultant Bouw</div>
+        <div class="rec-stat"><b>47</b> plaatsingen dit jaar</div>
+        <button class="rec-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          App Jan direct
+        </button>
+      </div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:24px"><b>Implementatie:</b> vervang de initialen-<code style="font-family:var(--mono);font-size:13px;background:var(--bg-2);padding:1px 6px;border-radius:3px">div</code> door <code style="font-family:var(--mono);font-size:13px;background:var(--bg-2);padding:1px 6px;border-radius:3px">&lt;img src="foto.jpg" alt="Naam" style="width:72px;height:72px;border-radius:50%;object-fit:cover"&gt;</code>. De status-dot en het groene online-bolletje blijven ongewijzigd via de <code style="font-family:var(--mono);font-size:13px;background:var(--bg-2);padding:1px 6px;border-radius:3px">.rec-av-wrap</code> wrapper.</p>
+</div>
+</section>
+
+<!-- 15 HERO COMPONENT -->
+<section id="hero" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">15 — Hero component</span>
+    <h2>Zoeken is <em>de eerste actie</em></h2>
+    <p>De zoekbalk staat centraal. Geen keuze voorleggen aan de bezoeker — gewoon direct zoeken. Sectorblokken zitten één scroll lager als tweede laag.</p>
+  </div>
+</div>
+
+<!-- Hero volledig breed — geen .wrap wrapper -->
+<div style="background:var(--ink);position:relative;overflow:hidden;padding:80px 52px 96px">
+
+  <!-- Decoratieve cirkels achtergrond -->
+  <div aria-hidden="true" style="position:absolute;top:-80px;right:-80px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(233,78,27,.12);pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;top:-40px;right:-40px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(233,78,27,.08);pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;top:0;right:0;width:140px;height:140px;border-radius:50%;background:var(--orange);opacity:.06;pointer-events:none"></div>
+  <!-- Stippelgrid op donkere bg -->
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1.2px);background-size:24px 24px;pointer-events:none"></div>
+
+  <div style="max-width:1080px;margin:0 auto;position:relative">
+
+    <!-- Eyebrow -->
+    <div style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);display:inline-flex;align-items:center;gap:10px;margin-bottom:24px">
+      <span style="width:20px;height:1.5px;background:var(--orange);display:inline-block"></span>
+      Bouw · Techniek · Office · Rotterdam &amp; omgeving
+    </div>
+
+    <!-- Kop -->
+    <h1 style="font-family:var(--display);font-weight:800;font-size:clamp(40px,6vw,80px);letter-spacing:-.045em;line-height:.92;color:#fff;margin:0 0 32px;max-width:800px">
+      Jouw volgende<br><em style="font-style:italic;font-weight:300">baan begint hier</em>
+    </h1>
+
+    <!-- Zoekbalk -->
+    <div style="background:var(--card);border-radius:var(--r);padding:8px 8px 8px 20px;display:flex;align-items:center;gap:12px;max-width:680px;box-shadow:var(--shadow-lg)">
+      <!-- Zoek-icoon -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--subtle)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <!-- Input -->
+      <input
+        type="text"
+        placeholder="Zoek op functie, sector of stad…"
+        style="
+          flex:1;border:0;background:transparent;
+          font-family:var(--display);font-size:16px;font-weight:500;
+          color:var(--ink);outline:none;padding:10px 0;min-width:0;
+        "
+        disabled
+      />
+      <!-- Divider -->
+      <div style="width:1px;height:32px;background:var(--line-strong);flex-shrink:0"></div>
+      <!-- Locatie -->
+      <div style="display:flex;align-items:center;gap:8px;padding:0 12px;flex-shrink:0">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--subtle)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span style="font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap">Rotterdam</span>
+      </div>
+      <!-- CTA knop -->
+      <button class="btn btn-primary" style="flex-shrink:0;border-radius:calc(var(--r) - 4px)">
+        Zoek vacatures
+      </button>
+    </div>
+
+    <!-- Populaire zoekopdrachten -->
+    <div style="display:flex;align-items:center;gap:10px;margin-top:20px;flex-wrap:wrap">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.4)">Populair:</span>
+      <button style="font-family:var(--display);font-size:13px;font-weight:500;color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-pill);padding:5px 14px;cursor:pointer;transition:all .14s" onmouseover="this.style.background='rgba(255,255,255,.14)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">Timmerman</button>
+      <button style="font-family:var(--display);font-size:13px;font-weight:500;color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-pill);padding:5px 14px;cursor:pointer;transition:all .14s" onmouseover="this.style.background='rgba(255,255,255,.14)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">Elektromonteur</button>
+      <button style="font-family:var(--display);font-size:13px;font-weight:500;color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-pill);padding:5px 14px;cursor:pointer;transition:all .14s" onmouseover="this.style.background='rgba(255,255,255,.14)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">Lasser</button>
+      <button style="font-family:var(--display);font-size:13px;font-weight:500;color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-pill);padding:5px 14px;cursor:pointer;transition:all .14s" onmouseover="this.style.background='rgba(255,255,255,.14)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">ZZP opdracht</button>
+      <button style="font-family:var(--display);font-size:13px;font-weight:500;color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-pill);padding:5px 14px;cursor:pointer;transition:all .14s" onmouseover="this.style.background='rgba(255,255,255,.14)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">Werkvoorbereider</button>
+    </div>
+
+    <!-- Stats strip -->
+    <div style="display:flex;gap:40px;margin-top:52px;flex-wrap:wrap">
+      <div>
+        <div style="font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-.03em;color:#fff">98<span style="color:var(--orange)">+</span></div>
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.45);margin-top:4px">Actieve vacatures</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.1);align-self:stretch"></div>
+      <div>
+        <div style="font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-.03em;color:#fff">4.7<span style="color:var(--orange)">★</span></div>
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.45);margin-top:4px">289 Google-reviews</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.1);align-self:stretch"></div>
+      <div>
+        <div style="font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-.03em;color:#fff">12<span style="color:var(--orange)">+</span></div>
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.45);margin-top:4px">Jaar ervaring</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.1);align-self:stretch"></div>
+      <div>
+        <div style="font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-.03em;color:#fff">10<span style="color:var(--orange)">+</span></div>
+        <div style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.45);margin-top:4px">Consultants</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Sectorblokken als tweede laag — direct onder hero -->
+<div style="max-width:1080px;margin:0 auto;padding:0 52px">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:-28px;position:relative;z-index:1">
+
+    <div style="background:var(--card);border-radius:var(--r);border:1px solid var(--line);padding:20px 24px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .18s;gap:16px" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(21,23,28,.10)';this.style.transform='translateY(0)'">
+      <div>
+        <div style="font-weight:800;font-size:18px;letter-spacing:-.02em;margin-bottom:2px">Bouw</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--subtle)">34 vacatures</div>
+      </div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--orange-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+    </div>
+
+    <div style="background:var(--card);border-radius:var(--r);border:1px solid var(--line);padding:20px 24px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .18s;gap:16px" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(21,23,28,.10)';this.style.transform='translateY(0)'">
+      <div>
+        <div style="font-weight:800;font-size:18px;letter-spacing:-.02em;margin-bottom:2px">Techniek</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--subtle)">47 vacatures</div>
+      </div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--orange-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+    </div>
+
+    <div style="background:var(--card);border-radius:var(--r);border:1px solid var(--line);padding:20px 24px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all .18s;gap:16px" onmouseover="this.style.borderColor='var(--orange)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(21,23,28,.10)';this.style.transform='translateY(0)'">
+      <div>
+        <div style="font-weight:800;font-size:18px;letter-spacing:-.02em;margin-bottom:2px">Office</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--subtle)">17 vacatures</div>
+      </div>
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-tint);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="wrap" style="margin-top:32px">
+  <p class="note"><b>Hero-structuur:</b> Donkere achtergrond met stippelgrid en cirkel-decoratie. Zoekbalk is primaire actie — ink CTA-knop. Sectorblokken "hangen" uit de hero met negatieve margin (-28px) zodat ze deel uitmaken van de hero maar ook de sectie eronder aankondigen. Stats strip laat direct autoriteit en sociale proof zien.</p>
+  <p class="note" style="margin-top:12px"><b>WhatsApp als alternatief:</b> naast de zoekbalk komt in de productieversie een tweede lijn — "Liever direct bellen of appen? <u>WhatsApp ons</u>" — als alternatief conversiepad voor wie niet wil zoeken.</p>
+</div>
+</section>
+
+<!-- 16 FOTOGRAFIE -->
+<section id="fotografie" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">16 — Fotografie</span>
+    <h2>Echte mensen,<br><em>echte sfeer</em></h2>
+    <p>Geen stockfoto's. Ymatch heeft al sterk beeldmateriaal — gebruik het consistent. Hieronder de richtlijnen en de categorieën.</p>
+  </div>
+
+  <div class="sub">Do's &amp; don'ts</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px">
+    <div style="background:var(--green-tint);border:1px solid var(--green-soft);border-radius:var(--r);padding:24px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-bottom:16px">Wel gebruiken</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:5px;flex-shrink:0"></div>
+          <span>Echte consultants en kandidaten — herkenbare gezichten, geen geposeerde glimlach</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:5px;flex-shrink:0"></div>
+          <span>Actieve scenes — aan het werk, overleg, op locatie</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:5px;flex-shrink:0"></div>
+          <span>Het kantoor in Capelle — herkenbare Ymatch-omgeving (mos-logo, houten latten-wand, Rotterdam-posters)</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:5px;flex-shrink:0"></div>
+          <span>Warme belichting — kantoorlicht of buitenlicht, geen studio-flash</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:5px;flex-shrink:0"></div>
+          <span>Diversiteit in leeftijd, geslacht en achtergrond — het team is divers</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:5px;flex-shrink:0"></div>
+          <span>Portretfoto's met neutrale of herkenbare achtergrond (kantoor, plant, buiten)</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:#FFF1F2;border:1px solid #FECDD3;border-radius:var(--r);padding:24px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#C0392B;margin-bottom:16px">Niet gebruiken</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#C0392B;margin-top:5px;flex-shrink:0"></div>
+          <span>Stockfoto's — zijn te herkenbaar en te generiek voor een persoonlijk merk</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#C0392B;margin-top:5px;flex-shrink:0"></div>
+          <span>Clichébeelden: mensen met helmen die de camera inkijken, handdrukken in pak</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#C0392B;margin-top:5px;flex-shrink:0"></div>
+          <span>Koude kantoorbelichting of blauwe tint — Ymatch is warm, niet kil</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#C0392B;margin-top:5px;flex-shrink:0"></div>
+          <span>AI-gegenereerde mensen — direct herkenbaar en ondermijnt authenticiteit</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#C0392B;margin-top:5px;flex-shrink:0"></div>
+          <span>Geforceerde poses — mensen moeten er op zichzelf uitzien</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">Fotocategorieën &amp; gebruik</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)">
+      <div style="height:180px;background:var(--bg-2);overflow:hidden;position:relative">
+        <img src="/mnt/user-data/uploads/1757321398049.jpeg" alt="Ymatch team portret" style="width:100%;height:100%;object-fit:cover;object-position:top"/>
+        <div style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--ink);color:#fff;padding:4px 10px;border-radius:var(--r-xs)">Team portret</div>
+      </div>
+      <div style="padding:16px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px">Consultant-portretten</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Gebruik op: recruiter-kaart, over ons, werken bij. Formaat: vierkant of 3:4. Achtergrond: kantoor of neutraal. Expressie: zelfverzekerd en toegankelijk.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)">
+      <div style="height:180px;background:var(--bg-2);overflow:hidden;position:relative">
+        <img src="/mnt/user-data/uploads/3t4a4796-scaled.jpg" alt="Ymatch kantoor sfeer" style="width:100%;height:100%;object-fit:cover"/>
+        <div style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--ink);color:#fff;padding:4px 10px;border-radius:var(--r-xs)">Kantoor sfeer</div>
+      </div>
+      <div style="padding:16px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px">Werkplek &amp; omgeving</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Gebruik op: over ons, werken bij, hero-achtergrond. Toont de Ymatch-werkplek — het mos-logo, de houten latten-wand en Rotterdam-posters zijn herkenbaar.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm)">
+      <div style="height:180px;background:var(--bg-2);overflow:hidden;position:relative">
+        <img src="/mnt/user-data/uploads/1752217745924.jpeg" alt="Ymatch team uitje" style="width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+        <div style="position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--ink);color:#fff;padding:4px 10px;border-radius:var(--r-xs)">Cultuur</div>
+      </div>
+      <div style="padding:16px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:6px">Team &amp; cultuur</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6">Gebruik op: werken bij, social media, over ons. Toont de Ymatch-cultuur — samen, informeel, energie. Ymatch-hoodies en groepsdynamiek zijn kenmerkend.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sub" style="margin-top:40px">Portret-stijl richtlijnen</div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:start">
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:10px">Formaat</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Vierkant (1:1) voor recruiter-kaart en social. Staand (3:4) voor over ons en werken bij. Altijd object-fit: cover zodat bijsnijden consistent is.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:10px">Belichting</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Warm en natuurlijk. Raam- of daglicht heeft voorkeur. Geen harde schaduwen. De tint past bij de #EFEAE0 achtergrondkleur van de site.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:10px">Achtergrond</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Kantooromgeving (licht bokeh), neutrale wand, of buiten. De houten latten-wand en het mos-logo zijn herkenbaar Ymatch en mogen zichtbaar zijn.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:10px">Kleding</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.6">Casual-professioneel. Ymatch-hoodie of -polo voor teamfoto's. Eigen kleding voor portret. Geen stropdas, geen pak — tenzij het de persoon écht is.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 17 ICONEN -->
+<section id="iconen" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">17 — Iconen</span>
+    <h2>Lucide Icons —<br><em>één set, altijd consistent</em></h2>
+    <p>Lucide is de vaste icon set voor ymatch.nl. Open source, 1400+ iconen, 1.5px lijndikte — past precies bij de stijl van het design system.</p>
+  </div>
+
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 28px;margin-bottom:24px;display:flex;gap:32px;flex-wrap:wrap;align-items:center">
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:6px">Set</div>
+      <div style="font-size:15px;font-weight:700">Lucide Icons</div>
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:6px">Lijndikte</div>
+      <div style="font-size:15px;font-weight:700">1.5px stroke</div>
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:6px">Formaat</div>
+      <div style="font-size:15px;font-weight:700">20px UI · 24px decoratief</div>
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);margin-bottom:6px">Integratie</div>
+      <div style="font-size:15px;font-weight:700">SVG inline of lucide-react npm</div>
+    </div>
+    <a href="https://lucide.dev" target="_blank" style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);text-decoration:underline;text-underline-offset:3px">lucide.dev →</a>
+  </div>
+
+  <div class="sub">Kernset — meest gebruikte iconen</div>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px">
+
+    <!-- Iconen als inline SVG met Lucide-stijl -->
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">search</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Zoekbalk</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">map-pin</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Locatie</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">briefcase</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Vacature</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">user</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Kandidaat</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">home</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Bouw</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">wrench</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Techniek</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">monitor</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Office</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4 19.79 19.79 0 0 1 1.55 4.87 2 2 0 0 1 3.55 2.7h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">phone</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Contact</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><polyline points="20 6 9 17 4 12"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">check</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Succesvol</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">arrow-right</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Actie / link</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">message-square</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">WhatsApp/chat</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 12px;text-align:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--subtle);text-transform:uppercase;letter-spacing:.04em">star</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">Review / ster</div>
+    </div>
+  </div>
+
+  <div class="sub">Gebruik &amp; regels</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px">Grootte</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">20×20px in UI-context (knoppen, labels, nav). 24×24px als decoratief icoon naast tekst. Nooit kleiner dan 16px.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px">Kleur</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">Altijd currentColor — het icoon erft de kleur van de parent. Oranje voor acties en CTA's. Ink voor informatieve iconen. Groen voor succes/beschikbaar.</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px">Lijndikte</div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6">Altijd 1.5px stroke-width. Nooit fill. Nooit een andere lijndikte dan de standaard — dat breekt de visuele consistentie.</div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:20px"><b>WordPress implementatie:</b> gebruik het Lucide SVG sprite of laad iconen individueel als inline SVG. Niet als font-icon (iconfont heeft accessibility-problemen). Installeer via <code style="font-family:var(--mono);font-size:12px;background:var(--bg-2);padding:2px 6px;border-radius:3px">npm install lucide</code> of download SVG's direct van lucide.dev.</p>
+</div>
+</section>
+
+<!-- 18 GOOGLE REVIEWS STRIP -->
+<section id="reviews" class="block">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">18 — Reviews strip</span>
+    <h2>4.7 sterren,<br><em>289 reviews</em></h2>
+    <p>Het sterkste conversiemiddel dat Ymatch heeft. Staat op elke pagina — minimaal als strip, maximaal als volledig blok met quotes.</p>
+  </div>
+
+  <div class="sub">Variant 1 — compacte strip (header / footer)</div>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 28px;display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+    <svg width="80" height="28" viewBox="0 0 80 28" fill="none">
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#E94E1B" transform="translate(0,0) scale(1.2)"/>
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#E94E1B" transform="translate(16,0) scale(1.2)"/>
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#E94E1B" transform="translate(32,0) scale(1.2)"/>
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#E94E1B" transform="translate(48,0) scale(1.2)"/>
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#E94E1B" transform="translate(64,0) scale(1.2)"/>
+    </svg>
+    <div>
+      <span style="font-weight:800;font-size:22px;letter-spacing:-.02em">4.7</span>
+      <span style="font-size:14px;color:var(--muted);margin-left:6px">op Google</span>
+    </div>
+    <div style="width:1px;height:32px;background:var(--line-strong)"></div>
+    <div style="font-size:14px;color:var(--muted)"><b style="color:var(--ink)">289</b> beoordelingen</div>
+    <div style="width:1px;height:32px;background:var(--line-strong)"></div>
+    <a href="#" style="font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--orange)">Lees alle reviews →</a>
+  </div>
+
+  <div class="sub">Variant 2 — quote-blok (homepage / over ons)</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-sm)">
+      <div style="display:flex;gap:3px;margin-bottom:14px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <p style="font-size:14px;line-height:1.65;color:var(--ink);margin:0 0 16px">"Snel geholpen en goed geluisterd naar wat ik zocht. Ze snapten meteen wat ik wilde en regelden het vlot."</p>
+      <div style="font-family:var(--hand);font-size:15px;color:var(--blue)">— Mark V., Timmerman</div>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-sm)">
+      <div style="display:flex;gap:3px;margin-bottom:14px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <p style="font-size:14px;line-height:1.65;color:var(--ink);margin:0 0 16px">"Persoonlijk contact, goede communicatie en ze denken écht mee. Niet zomaar een bureau — ze kennen het vak."</p>
+      <div style="font-family:var(--hand);font-size:15px;color:var(--blue)">— Sandra K., Elektromonteur</div>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-sm)">
+      <div style="display:flex;gap:3px;margin-bottom:14px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#E94E1B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <p style="font-size:14px;line-height:1.65;color:var(--ink);margin:0 0 16px">"Ze zijn snel, eerlijk over wat mogelijk is en sturen geen kandidaten waar je niks aan hebt. Dat is precies wat je wil."</p>
+      <div style="font-family:var(--hand);font-size:15px;color:var(--blue)">— Pieter D., Directeur MKB</div>
+    </div>
+
+  </div>
+
+  <p class="note" style="margin-top:24px"><b>Reviewschema (SEO):</b> het AggregateRating schema is momenteel kapot — de 4.7★ verschijnt niet in Google zoekresultaten. Dit fixen is de snelste SEO-winst voor de nieuwe site (30 minuten werk voor een developer).</p>
+  <p class="note" style="margin-top:12px"><b>Quotes:</b> gebruik altijd echte Google-reviews, nooit verzonnen. Toestemming is niet vereist voor openbare Google-reviews — wel de naam afkorten tot voornaam + initiaal achternaam.</p>
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>
