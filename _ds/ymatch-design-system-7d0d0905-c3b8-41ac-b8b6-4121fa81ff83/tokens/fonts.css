@@ -1,0 +1,12 @@
+/* ==========================================================================
+   Ymatch — Webfonts
+   All three families are freely available on Google Fonts. We load them via
+   the Google Fonts CSS endpoint (which itself declares the @font-face rules
+   and serves woff2 binaries). If you need fully self-hosted fonts, download
+   the woff2 files and replace this import with local @font-face rules.
+
+   • Bricolage Grotesque — variable optical-size display/body
+   • Space Mono          — 400 / 700
+   • Caveat              — 500 / 600 / 700
+   ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap");

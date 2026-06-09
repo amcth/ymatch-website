@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Ymatch — Typography tokens
+   Drie fonts, elk op z'n plek:
+   • Bricolage Grotesque — impact, koppen, body (variable optical size)
+   • Space Mono          — labels, meta, eyebrows, HEX, salaris
+   • Caveat              — handgeschreven accenten (SPAARZAAM)
+   ========================================================================== */
+:root {
+  /* --- Families ---------------------------------------------------------- */
+  --font-display: "Bricolage Grotesque", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --font-mono:    "Space Mono", ui-monospace, Menlo, monospace;
+  --font-hand:    "Caveat", "Segoe Script", cursive;
+
+  /* alias to match common semantic naming */
+  --font-body: var(--font-display);
+
+  /* --- Weights ----------------------------------------------------------- */
+  --fw-light:    300; /* @kind font */
+  --fw-regular:  400; /* @kind font */
+  --fw-medium:   500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:     700; /* @kind font */
+  --fw-black:    800; /* @kind font */
+
+  /* --- Type scale (px) ---------------------------------------------------- */
+  --fs-display: 112px; /* Hero op grote schermen (clamp neerwaarts)          */
+  --fs-h1:       52px;
+  --fs-h2:       38px;
+  --fs-h3:       28px;
+  --fs-h4:       20px;
+  --fs-lg:       18px; /* Body groot — intro-alinea's                        */
+  --fs-body:     16px; /* Standaard bodytekst                               */
+  --fs-sm:       14px;
+  --fs-label:    11px; /* Space Mono labels / eyebrows                       */
+  --fs-hand:     22px;
+
+  /* --- Line heights ------------------------------------------------------ */
+  --lh-display: .9;  /* @kind font */
+  --lh-tight:   .95; /* @kind font */
+  --lh-heading: 1.1; /* @kind font */
+  --lh-body:    1.5; /* @kind font */
+  --lh-relaxed: 1.6; /* @kind font */
+
+  /* --- Letter spacing ---------------------------------------------------- */
+  --ls-display: -.05em;
+  --ls-h2:      -.035em;
+  --ls-h3:      -.025em;
+  --ls-h4:      -.02em;
+  --ls-label:    .07em;  /* mono uppercase tracking                          */
+
+  /* === Semantic roles ===================================================== */
+  --text-display: var(--fw-black) var(--fs-h1)/var(--lh-display) var(--font-display);
+  --text-heading: var(--fw-bold)  var(--fs-h2)/var(--lh-tight)   var(--font-display);
+  --text-eyebrow: var(--fw-bold)  var(--fs-label)/1.6            var(--font-mono);
+}

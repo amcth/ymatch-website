@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vacaturebank — Ymatch</title>
+
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/fonts.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/colors.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/typography.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/spacing.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/radius.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/base.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/styles.css"/>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/_ds_bundle.js"></script>
+
+<style>
+  html, body { margin: 0; }
+  html { scroll-behavior: smooth; }
+  img { max-width: 100%; }
+
+  /* Dual-thumb salary slider — thumbs need pointer-events: auto to grab,
+     while the input track is invisible (background painted by parent). */
+  .ym-range {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .ym-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid var(--orange);
+    box-shadow: var(--shadow);
+    cursor: grab;
+  }
+  .ym-range::-moz-range-thumb {
+    pointer-events: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid var(--orange);
+    box-shadow: var(--shadow);
+    cursor: grab;
+  }
+  .ym-range::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 32px;
+  }
+  .ym-range::-moz-range-track {
+    background: transparent;
+    height: 32px;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="SiteChrome.jsx"></script>
+<script type="text/babel" src="Vacaturebank.jsx"></script>
+
+<script type="text/babel">
+  // Jobs feed for the vacaturebank. Each entry carries the row display
+  // props plus filter/sort fields (sector, ervaring, opleiding, urenBucket,
+  // city, postcode, salaryMid). Postcodes are realistic for the Rijnmond
+  // region so the distance filter feels right.
+  const J = (props) => props;
+  const JOBS = [
+    // BOUW
+    J({ title: "Timmerman", city: "Rotterdam", postcode: "3083", location: "Rotterdam-Zuid · Fulltime · Direct in dienst", sector: "Bouw", ervaring: "Medior", opleiding: "MBO 4", urenBucket: "Fulltime (32-40u)", salaryMid: 3550,
+      badges: [{label:"Bouw",tone:"sector"},{label:"Nieuw",tone:"new"}], salary: "€3.200 – €3.900/mnd",
+      recruiter: {initials:"JB", name:"Jan Bakker", role:"Consultant Bouw", tone:"orange"} }),
+    J({ title: "Uitvoerder Bouw", city: "Rotterdam", postcode: "3068", location: "Rotterdam · MBO/HBO · Detachering", sector: "Bouw", ervaring: "Senior", opleiding: "HBO", urenBucket: "Fulltime (32-40u)", salaryMid: 4650,
+      badges: [{label:"Bouw",tone:"sector"}], salary: "€4.200 – €5.100/mnd",
+      recruiter: {initials:"JB", name:"Jan Bakker", role:"Consultant Bouw", tone:"orange"} }),
+    J({ title: "Allround timmerman", city: "Schiedam", postcode: "3115", location: "Schiedam · Fulltime · Direct in dienst", sector: "Bouw", ervaring: "Medior", opleiding: "MBO 4", urenBucket: "Fulltime (32-40u)", salaryMid: 3350,
+      badges: [{label:"Bouw",tone:"sector"},{label:"Nieuw",tone:"new"}], salary: "€3.000 – €3.700/mnd",
+      recruiter: {initials:"JB", name:"Jan Bakker", role:"Consultant Bouw", tone:"orange"} }),
+    J({ title: "Voorman / wachtbaas", city: "Capelle a/d IJssel", postcode: "2908", location: "Capelle a/d IJssel · Fulltime · Direct in dienst", sector: "Bouw", ervaring: "Senior", opleiding: "MBO 4", urenBucket: "Fulltime (32-40u)", salaryMid: 4300,
+      badges: [{label:"Bouw",tone:"sector"}], salary: "€3.900 – €4.700/mnd",
+      recruiter: {initials:"JB", name:"Jan Bakker", role:"Consultant Bouw", tone:"orange"} }),
+    J({ title: "Metselaar", city: "Vlaardingen", postcode: "3134", location: "Vlaardingen · Fulltime · Direct in dienst", sector: "Bouw", ervaring: "Junior", opleiding: "MBO 2-3", urenBucket: "Fulltime (32-40u)", salaryMid: 3200,
+      badges: [{label:"Bouw",tone:"sector"}], salary: "€2.900 – €3.500/mnd",
+      recruiter: {initials:"JB", name:"Jan Bakker", role:"Consultant Bouw", tone:"orange"} }),
+
+    // TECHNIEK
+    J({ title: "Elektromonteur", city: "Capelle a/d IJssel", postcode: "2901", location: "Capelle a/d IJssel · Opdracht · 6 mnd", sector: "Techniek", ervaring: "Senior", opleiding: "MBO 4", urenBucket: "Flexibel", salaryMid: 5200,
+      badges: [{label:"ZZP",tone:"zzp"},{label:"Techniek",tone:"info"}], salaryLabel: "Tarief", salary: "€58 – €72/uur",
+      recruiter: {initials:"SB", name:"Sander Berg", role:"Consultant Techniek", tone:"green"} }),
+    J({ title: "Lasser MIG/MAG", city: "Schiedam", postcode: "3125", location: "Schiedam · Fulltime · Direct in dienst", sector: "Techniek", ervaring: "Medior", opleiding: "MBO 2-3", urenBucket: "Fulltime (32-40u)", salaryMid: 3250,
+      badges: [{label:"Techniek",tone:"info"},{label:"Nieuw",tone:"new"}], salary: "€2.900 – €3.600/mnd",
+      recruiter: {initials:"SB", name:"Sander Berg", role:"Consultant Techniek", tone:"green"} }),
+    J({ title: "Service-engineer WTB", city: "Rotterdam", postcode: "3045", location: "Rotterdam · HBO · Detachering", sector: "Techniek", ervaring: "Senior", opleiding: "HBO", urenBucket: "Fulltime (32-40u)", salaryMid: 4150,
+      badges: [{label:"Techniek",tone:"info"}], salary: "€3.800 – €4.500/mnd",
+      recruiter: {initials:"SB", name:"Sander Berg", role:"Consultant Techniek", tone:"green"} }),
+    J({ title: "Installateur", city: "Spijkenisse", postcode: "3201", location: "Spijkenisse · Fulltime · Try & hire", sector: "Techniek", ervaring: "Medior", opleiding: "MBO 4", urenBucket: "Fulltime (32-40u)", salaryMid: 3400,
+      badges: [{label:"Techniek",tone:"info"}], salary: "€3.100 – €3.700/mnd",
+      recruiter: {initials:"SB", name:"Sander Berg", role:"Consultant Techniek", tone:"green"} }),
+    J({ title: "Onderhoudsmonteur", city: "Rotterdam", postcode: "3022", location: "Rotterdam · Parttime · 24-32u", sector: "Techniek", ervaring: "Junior", opleiding: "MBO 2-3", urenBucket: "Parttime (16-32u)", salaryMid: 2700,
+      badges: [{label:"Techniek",tone:"info"}], salary: "€2.400 – €3.000/mnd",
+      recruiter: {initials:"SB", name:"Sander Berg", role:"Consultant Techniek", tone:"green"} }),
+
+    // OFFICE
+    J({ title: "Werkvoorbereider", city: "Rotterdam", postcode: "3071", location: "Rotterdam · HBO · Detachering", sector: "Office", ervaring: "Medior", opleiding: "HBO", urenBucket: "Fulltime (32-40u)", salaryMid: 4200,
+      badges: [{label:"Office",tone:"info"}], salary: "€3.800 – €4.600/mnd",
+      recruiter: {initials:"LV", name:"Lisa Visser", role:"Consultant Office", tone:"blue"} }),
+    J({ title: "Planner", city: "Capelle a/d IJssel", postcode: "2911", location: "Capelle a/d IJssel · Fulltime · ZZP-opdracht", sector: "Office", ervaring: "Senior", opleiding: "HBO", urenBucket: "Flexibel", salaryMid: 4500,
+      badges: [{label:"Office",tone:"info"},{label:"ZZP",tone:"zzp"}], salaryLabel: "Tarief", salary: "€48 – €60/uur",
+      recruiter: {initials:"LV", name:"Lisa Visser", role:"Consultant Office", tone:"blue"} }),
+    J({ title: "Projectsecretaresse", city: "Rotterdam", postcode: "3011", location: "Rotterdam · Parttime · Direct in dienst", sector: "Office", ervaring: "Junior", opleiding: "MBO 4", urenBucket: "Parttime (16-32u)", salaryMid: 3050,
+      badges: [{label:"Office",tone:"info"},{label:"Nieuw",tone:"new"}], salary: "€2.800 – €3.300/mnd",
+      recruiter: {initials:"LV", name:"Lisa Visser", role:"Consultant Office", tone:"blue"} }),
+    J({ title: "Calculator", city: "Rotterdam", postcode: "3088", location: "Rotterdam · HBO · Direct in dienst", sector: "Office", ervaring: "Senior", opleiding: "WO", urenBucket: "Fulltime (32-40u)", salaryMid: 4400,
+      badges: [{label:"Office",tone:"info"}], salary: "€4.000 – €4.800/mnd",
+      recruiter: {initials:"LV", name:"Lisa Visser", role:"Consultant Office", tone:"blue"} }),
+  ];
+
+  function App() {
+    React.useEffect(() => { window.scrollTo(0, 0); }, []);
+    return (
+      <div>
+        <SiteHeader />
+        <main>
+          <Vacaturebank jobs={JOBS} />
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <rect width="100" height="100" fill="#EFEAE0"/>
+  <text x="50" y="68" text-anchor="middle" font-family="Georgia, serif" font-weight="900" font-size="56" fill="#E94E1B">Y</text>
+</svg>
+</template>
+</body>
+</html>

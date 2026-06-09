@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Ymatch — Color tokens
+   "Vier kleuren, één hiërarchie." Oranje is het merk — niet de knop.
+   Ink is de primaire CTA. Groen = beschikbaarheid/actie. Blauw = info/techniek.
+   ========================================================================== */
+:root {
+  /* --- Brand: Vuur Oranje ------------------------------------------------ */
+  --orange:      #E94E1B; /* Merkkleur — accenten, iconen, hover, de Y       */
+  --orange-deep: #C73D13; /* Hover/press van oranje knoppen                  */
+  --orange-soft: #F9DDD1; /* Focus-glow, zachte vlakken                      */
+  --orange-tint: #FDF0EA; /* Badge-achtergrond, lichte oranje vlakken        */
+
+  /* --- Ink (primaire CTA + tekst) ---------------------------------------- */
+  --ink:   #15171C;       /* Primaire CTA-knop, koppen, donkere secties      */
+  --ink-2: #0D0F12;       /* Ink hover/press                                 */
+
+  /* --- Backgrounds: Warmwit ---------------------------------------------- */
+  --bg:   #EFEAE0;        /* Pagina-achtergrond — warm, nooit koud wit       */
+  --bg-2: #E6E0D4;        /* Hover states, actieve filters, dividers         */
+  --bg-3: #DDD6C8;        /* Diepere vlakken                                 */
+  --card: #F8F5EF;        /* Cards en formuliervelden — iets lichter dan bg  */
+
+  /* --- Staalgroen: beschikbaarheid, actie, WhatsApp, succes -------------- */
+  --green:      #2D7A4F;
+  --green-deep: #1E5737;
+  --green-soft: #D4EBDC;
+  --green-tint: #EDF7F1;
+
+  /* --- Draft Blauw: informatief, technisch, maatlijnen ------------------- */
+  --blue:      #2E4A6B;
+  --blue-soft: #C9D6E3;
+  --blue-tint: #EBF0F6;
+
+  /* --- WhatsApp groen (merk-specifiek, alleen WhatsApp-CTA) -------------- */
+  --wa:      #25D366;
+  --wa-deep: #1DA851;
+
+  /* --- Tekst-grijzen ----------------------------------------------------- */
+  --muted:  #5C5A54;      /* Subtekst, metadata, beschrijvingen              */
+  --subtle: #8C8A84;      /* Placeholders, fijne labels, captions            */
+
+  /* --- Lijnen & textuur -------------------------------------------------- */
+  --line:        rgba(21, 23, 28, .10);
+  --line-strong: rgba(21, 23, 28, .20);
+  --grid-dot:    rgba(21, 23, 28, .06); /* Stippelgrid paginatextuur         */
+
+  /* --- Status / feedback ------------------------------------------------- */
+  --danger:      #C0392B;
+  --danger-soft: #FECDD3;
+  --danger-tint: #FFF1F2;
+
+  /* === Semantic aliases =================================================== */
+  --text-strong:    var(--ink);
+  --text-body:      var(--muted);
+  --text-subtle:    var(--subtle);
+  --text-on-dark:   #FFFFFF;
+  --surface-page:   var(--bg);
+  --surface-card:   var(--card);
+  --surface-sunken: var(--bg-2);
+  --surface-dark:   var(--ink);
+  --border-subtle:  var(--line);
+  --border-strong:  var(--line-strong);
+
+  --action-primary:        var(--ink);       /* dé CTA-knop                  */
+  --action-primary-hover:  var(--ink-2);
+  --action-brand:          var(--orange);    /* secundaire / merk-actie      */
+  --action-brand-hover:    var(--orange-deep);
+  --action-whatsapp:       var(--wa);
+
+  --accent-available: var(--green);  /* beschikbaar / online / succes        */
+  --accent-info:      var(--blue);   /* technisch / informatief              */
+  --focus-ring:       var(--orange-soft);
+}

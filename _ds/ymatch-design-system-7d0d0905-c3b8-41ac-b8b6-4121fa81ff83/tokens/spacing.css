@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Ymatch — Spacing tokens
+   8pt basisgrid. Alle spacing is een veelvoud van 8. Geen uitzonderingen.
+   (4px bestaat als enige halve stap voor fijne details.)
+   Mobiel-first: min. touch target 44×44px. Ontwerp eerst voor 375px breed.
+   ========================================================================== */
+:root {
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* --- Layout ------------------------------------------------------------ */
+  --container:      1080px; /* max breedte content                          */
+  --gutter:         52px;   /* horizontale padding desktop                   */
+  --gutter-mobile:  24px;
+  --section-gap:    88px;   /* verticale ruimte tussen secties               */
+  --touch-min:      44px;   /* minimale hit target                           */
+}

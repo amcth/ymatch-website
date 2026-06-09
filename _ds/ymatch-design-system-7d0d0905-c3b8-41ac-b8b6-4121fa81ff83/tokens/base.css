@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Ymatch — Base layer
+   Page defaults shared by every surface. The signature dotted-grid texture
+   on a warm-white background is the Ymatch canvas.
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  background-color: var(--bg);
+  /* Signature stippelgrid — subtiel, technisch, consistent */
+  background-image: radial-gradient(circle, var(--grid-dot) 1.2px, transparent 1.4px);
+  background-size: 24px 24px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--orange); color: #fff; }
+
+a { color: inherit; text-decoration: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Utility: the light blueprint grid used for marketing / social surfaces */
+.ym-blueprint {
+  background-image:
+    linear-gradient(rgba(46, 74, 107, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 74, 107, .07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}

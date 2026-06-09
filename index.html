@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ymatch — Vakmanschap verbindt.</title>
+
+<!-- Design system tokens (warm-white page, dotted grid, typography) -->
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/fonts.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/colors.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/typography.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/spacing.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/radius.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/tokens/base.css"/>
+<link rel="stylesheet" href="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/styles.css"/>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/ymatch-design-system-7d0d0905-c3b8-41ac-b8b6-4121fa81ff83/_ds_bundle.js"></script>
+
+<style>
+  html, body { margin: 0; }
+  /* DS base.css already sets body bg + radial-dot grid — don't override
+     with the `background` shorthand or the dotted-grid disappears. */
+  html { scroll-behavior: smooth; }
+  /* Prevent images from forcing horizontal scroll on narrow viewports */
+  img { max-width: 100%; }
+
+  /* Brand marquee animation */
+  @keyframes ym-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-33.333%); }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="SiteChrome.jsx"></script>
+<script type="text/babel" src="Homepage_Hero.jsx"></script>
+<script type="text/babel" src="Homepage_Sections.jsx"></script>
+
+<script type="text/babel">
+  // Realistic vacatures — salary always visible, named recruiter, ZZP shown
+  // as tarief/uur not /mnd. Recruiters here are matched to the photos under
+  // assets/recruiter-*.jpg (3 portraits, one per sector).
+  const JOBS = [
+    { title: "Timmerman",            location: "Rotterdam · Fulltime · Direct in dienst",        badges: [{label:"Bouw",tone:"sector"},{label:"Nieuw",tone:"new"}],    salary: "€3.200 – €3.900/mnd", recruiter: {initials:"JB", name:"Jan Bakker",   role:"Consultant Bouw",     tone:"orange"}, featured: true },
+    { title: "Elektromonteur",       location: "Capelle a/d IJssel · Opdracht · 6 mnd",          badges: [{label:"ZZP",tone:"zzp"},{label:"Techniek",tone:"info"}],   salaryLabel: "Tarief", salary: "€58 – €72/uur", recruiter: {initials:"SB", name:"Sander Berg",  role:"Consultant Techniek", tone:"green"} },
+    { title: "Werkvoorbereider",     location: "Rotterdam · HBO · Detachering",                  badges: [{label:"Office",tone:"info"}],                              salary: "€3.800 – €4.600/mnd", recruiter: {initials:"LV", name:"Lisa Visser",   role:"Consultant Office",   tone:"blue"} },
+    { title: "Lasser MIG/MAG",       location: "Schiedam · Fulltime · Direct in dienst",         badges: [{label:"Techniek",tone:"info"},{label:"Nieuw",tone:"new"}], salary: "€2.900 – €3.600/mnd", recruiter: {initials:"SB", name:"Sander Berg",  role:"Consultant Techniek", tone:"green"} },
+    { title: "Uitvoerder Bouw",      location: "Rotterdam · MBO/HBO · Detachering",              badges: [{label:"Bouw",tone:"sector"}],                              salary: "€4.200 – €5.100/mnd", recruiter: {initials:"JB", name:"Jan Bakker",   role:"Consultant Bouw",     tone:"orange"} },
+    { title: "Planner / werkvoorbereiding", location: "Capelle a/d IJssel · Fulltime",           badges: [{label:"Office",tone:"info"},{label:"ZZP",tone:"zzp"}],     salaryLabel: "Tarief", salary: "€48 – €60/uur", recruiter: {initials:"LV", name:"Lisa Visser",   role:"Consultant Office",   tone:"blue"} },
+  ];
+
+  function App() {
+    return (
+      <div>
+        <SiteHeader />
+        <main>
+          {/* New section order per feedback: vacatures come directly under
+              sectoren; consultants follow; the new Team section sits
+              between consultants and the dark social-proof band. */}
+          <Hero onSearch={() => {}} />
+          <Marquee />
+          <SectorenSection />
+          <VacaturesSection jobs={JOBS} />
+          <ConsultantsSection />
+          <TeamSection />
+          <SocialProofSection />
+          <WerkwijzeSection />
+          <ReviewsSection />
+          <WerkgeverSection />
+          <ClosingCTA />
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <rect width="100" height="100" fill="#EFEAE0"/>
+  <text x="50" y="68" text-anchor="middle" font-family="Georgia, serif" font-weight="900" font-size="56" fill="#E94E1B">Y</text>
+</svg>
+</template>
+</body>
+</html>

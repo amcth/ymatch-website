@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Ymatch — Radius & elevation tokens
+   "Rond maar niet speels." 14px op cards = warmte. 8px op knoppen =
+   professioneel. 4px op badges = scherp. Shadows zijn warm en zacht
+   (ink-getint, nooit puur zwart).
+   ========================================================================== */
+:root {
+  /* --- Border radius ----------------------------------------------------- */
+  --r-xs:   4px;   /* Badges, chips, labels                                 */
+  --r-sm:   8px;   /* Knoppen, inputs, kleine kaarten                       */
+  --r:     14px;   /* Cards, vacaturekaarten — DE standaard ★               */
+  --r-lg:  20px;   /* Modals, hero-elementen                                */
+  --r-pill: 999px; /* Filterchips, tags, statusbadges                       */
+
+  /* --- Shadows (warm, ink-getint) ---------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(21, 23, 28, .06);
+  --shadow:    0 1px 3px rgba(21, 23, 28, .05), 0 8px 24px rgba(21, 23, 28, .07);
+  --shadow-lg: 0 4px 8px rgba(21, 23, 28, .06), 0 20px 48px rgba(21, 23, 28, .10);
+
+  /* --- Focus ring -------------------------------------------------------- */
+  --ring: 0 0 0 3px var(--orange-soft);
+}
